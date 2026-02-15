@@ -3,13 +3,21 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "types": []
+    "types": ["node"]
   },
   "files": [
     "main.ts",
     "polyfills.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "**/*.ts",
+    "**/*.d.ts"
+  ]
+  ,
+  "exclude": [
+    "**/*.spec.ts",
+    "**/in-memory-backend-service.ts",
+    "test.ts",
+    "environments/environment.prod.ts"
   ]
 }
