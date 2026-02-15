@@ -14,7 +14,7 @@ import { CartService } from "../../services/cart.service";
 @Component({
   selector: "cart-item-control",
   templateUrl: "cart-item-control.component.html",
-  styleUrls: ["cart-item-control.component.css"],
+  styleUrls: ["cart-item-control.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class CartItemControlComponent implements OnInit {

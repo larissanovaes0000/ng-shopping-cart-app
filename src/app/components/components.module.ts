@@ -6,6 +6,7 @@ import { CartComponent } from "./cart/cart.component";
 import { ProductsListComponent } from "./product-list/products-list.component";
 import { CoreModule } from "../core/core.module";
 import { ProductFormComponent } from "./product-form/product-form.component";
+import { NavbarComponent } from './navbar/navbar.component';
 
 const components = [
   ProductsListComponent,
@@ -15,7 +16,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [components],
+  declarations: [components, NavbarComponent],
   imports: [BrowserModule, CoreModule],
   exports: [components],
 })
