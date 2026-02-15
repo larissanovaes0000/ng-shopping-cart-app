@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryBackendService } from './in-memory-backend-service'
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './views/home/home.component';
@@ -22,7 +23,7 @@ import { ComponentsModule } from './components/components.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryBackendService),
+    ...(environment.production ? [] : [HttpClientInMemoryWebApiModule.forRoot(InMemoryBackendService)]),
     ComponentsModule,
     CoreModule
   ],
