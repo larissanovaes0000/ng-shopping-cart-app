@@ -7,6 +7,7 @@ interface ProductContext {
 
 @Directive({
   selector: '[forProduct]',
+  standalone: true
 })
 export class ForProductDirective {
   constructor(

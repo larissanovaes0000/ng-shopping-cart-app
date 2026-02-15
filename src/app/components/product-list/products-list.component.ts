@@ -10,6 +10,7 @@ import {
     TemplateRef,
     ViewChild,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ForProductDirective } from '../../core/directives/for-product.directive';
 import { Product } from '../../core/interfaces/product.interface';
@@ -18,7 +19,9 @@ import { Product } from '../../core/interfaces/product.interface';
     selector: 'products-list',
     templateUrl: 'products-list.component.html',
     styleUrls: ['products-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
+    standalone: true,
+    imports: [CommonModule, ForProductDirective]
 })
 export class ProductsListComponent implements OnInit, AfterContentInit, AfterViewInit {
     @ViewChild(ForProductDirective, { read: ForProductDirective, static: true }) defaultTemplate: ForProductDirective;

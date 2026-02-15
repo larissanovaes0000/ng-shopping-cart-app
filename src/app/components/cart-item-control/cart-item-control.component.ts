@@ -5,6 +5,7 @@ import {
   Input,
   OnDestroy,
 } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { Subscription } from "rxjs";
 
 import { Product } from "../../core/interfaces/product.interface";
@@ -16,6 +17,8 @@ import { CartService } from "../../services/cart.service";
   templateUrl: "cart-item-control.component.html",
   styleUrls: ["cart-item-control.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [CommonModule]
 })
 export class CartItemControlComponent implements OnInit {
   @Input() product: Product;

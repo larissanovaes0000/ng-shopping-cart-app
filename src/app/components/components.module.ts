@@ -1,10 +1,8 @@
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 
 import { CartItemControlComponent } from "./cart-item-control/cart-item-control.component";
 import { CartComponent } from "./cart/cart.component";
 import { ProductsListComponent } from "./product-list/products-list.component";
-import { CoreModule } from "../core/core.module";
 import { ProductFormComponent } from "./product-form/product-form.component";
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -13,11 +11,11 @@ const components = [
   CartComponent,
   CartItemControlComponent,
   ProductFormComponent,
+  NavbarComponent
 ];
 
 @NgModule({
-  declarations: [components, NavbarComponent],
-  imports: [BrowserModule, CoreModule],
-  exports: [components],
+  imports: [...components],
+  exports: [...components],
 })
 export class ComponentsModule {}
