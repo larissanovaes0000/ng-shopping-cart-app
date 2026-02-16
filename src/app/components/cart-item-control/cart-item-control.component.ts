@@ -8,8 +8,8 @@ import {
 import { CommonModule } from "@angular/common";
 import { Subscription } from "rxjs";
 
-import { Product } from "../../core/interfaces/product.interface";
-import { CartItem } from "../../core/interfaces/cart-item.interface";
+import { Product } from "../../interfaces/product.interface";
+import { CartItem } from "../../interfaces/cart-item.interface";
 import { CartService } from "../../services/cart.service";
 
 @Component({

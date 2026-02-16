@@ -1,9 +1,9 @@
 import { CartDataService } from './cart-data.service';
 import { Injectable } from '@angular/core';
-import { CartItem } from '../core/interfaces/cart-item.interface';
+import { CartItem } from '../interfaces/cart-item.interface';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Product } from '../core/interfaces/product.interface';
+import { Product } from '../interfaces/product.interface';
 
 interface CartProducts {
     items: CartItem[];

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseDataService } from './base-data.service';
-import { Product } from '../core/interfaces/product.interface';
+import { Product } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

@@ -4,7 +4,7 @@
   </div>
   <div class="">
     <products-list [products]="products$ | async">
-      <ng-container *forProduct="let product; ofType: 'default'">
+      <!-- <ng-container *forProduct="let product; ofType: 'default'">
         <div class="product-image">
         </div>
         <h4>{{ product.name }} (custom default)</h4>
@@ -22,7 +22,7 @@
         <div class="product-image"></div>
         <h4>{{ product.name }} ({{ product.type }})</h4>
         <cart-item-control [product]="product"></cart-item-control>
-      </ng-container>
+      </ng-container> -->
     </products-list>
   </div>
   <hr />

@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { ProductsService } from './products.service';
-import { Product } from '../core/interfaces/product.interface';
+import { Product } from '../interfaces/product.interface';
 import { ProductsDataService } from './products-data.service';
 
 describe('ProductsService', () => {

@@ -12,16 +12,18 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ForProductDirective } from '../../core/directives/for-product.directive';
-import { Product } from '../../core/interfaces/product.interface';
+import { ForProductDirective } from '../../directives/for-product.directive';
+import { Product } from '../../interfaces/product.interface';
+import { ProductsListService } from '../../services/products-list/products-list';
+import { CartItemControlComponent } from '@components/cart-item-control/cart-item-control.component';
 
 @Component({
     selector: 'products-list',
     templateUrl: 'products-list.component.html',
     styleUrls: ['products-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
     standalone: true,
-    imports: [CommonModule, ForProductDirective]
+    imports: [CommonModule, CartItemControlComponent, ForProductDirective],
+    providers: [ProductsListService]
 })
 export class ProductsListComponent implements OnInit, AfterContentInit, AfterViewInit {
     @ViewChild(ForProductDirective, { read: ForProductDirective, static: true }) defaultTemplate: ForProductDirective;
@@ -32,9 +34,12 @@ export class ProductsListComponent implements OnInit, AfterContentInit, AfterVie
 
     templates: { [type: string]: TemplateRef<any> } = {};
 
-    constructor() { }
+    constructor(private productsListService: ProductsListService) { }
 
     ngOnInit() {
+        this.productsListService.getProductsList().subscribe(products => {
+            console.log(products) 
+        });
     }
 
     ngAfterContentInit(): void {

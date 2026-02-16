@@ -7,7 +7,6 @@ import { CartService } from '../../services/cart.service';
     selector: 'cart',
     templateUrl: 'cart.component.html',
     styleUrls: ['cart.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
     standalone: true,
     imports: [CommonModule, AsyncPipe]
 })

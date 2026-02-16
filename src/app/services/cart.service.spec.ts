@@ -1,5 +1,5 @@
 import { CartDataService } from './cart-data.service';
-import { CartItem } from '../core/interfaces/cart-item.interface';
+import { CartItem } from '../interfaces/cart-item.interface';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CartService } from './cart.service';

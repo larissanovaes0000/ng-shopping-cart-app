@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 import { CartItemControlComponent } from './cart-item-control.component';
 import { CartService } from '../../services/cart.service';
-import { Product } from '../../core/interfaces/product.interface';
+import { Product } from '../../interfaces/product.interface';
 
 describe('CartItemControlComponent', () => {
   let component: CartItemControlComponent;

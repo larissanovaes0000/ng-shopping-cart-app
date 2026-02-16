@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ProductsListComponent } from "./products-list.component";
 
 import { Component, OnInit } from "@angular/core";
-import { ForProductDirective } from "../../core/directives/for-product.directive";
+import { ForProductDirective } from "../../directives/for-product.directive";
 
 import { By } from "@angular/platform-browser";
 import { ComponentsModule } from "../components.module";

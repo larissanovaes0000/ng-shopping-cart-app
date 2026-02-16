@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { BaseDataService } from './base-data.service';
 import { Injectable } from '@angular/core';
-import { CartItem } from '../core/interfaces/cart-item.interface';
+import { CartItem } from '../interfaces/cart-item.interface';
 
 @Injectable()
 export class CartDataService extends BaseDataService<CartItem> {
