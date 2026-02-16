@@ -1,6 +1,9 @@
+@import "../../../styles/_colors.scss";
+@import "../../../styles/_fonts.scss";
+
 .product-form {
   width: 100%;
-  padding: 24px;
+  padding: 0 24px 24px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -12,9 +15,9 @@
 }
 
 .title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #34495e;
+  font-size: $text-lg;
+  font-weight: $font-bold;
+  color: $blue;
 }
 
 .field {
@@ -23,19 +26,21 @@
   gap: 6px;
 
   label {
-    font-size: 0.9rem;
-    color: #444;
+    font-size: $text-md;
+    color: $gray-900;
+    font-weight: $font-regular;
+    margin-bottom: 0;
   }
 
   input {
     padding: 10px 12px;
     border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    font-size: 0.95rem;
+    border: 1px solid $gray-100;
+    font-size: $text-md;
 
     &:focus {
       outline: none;
-      border-color: #4a90e2;
+      border-color: $blue;
     }
   }
 }
@@ -50,8 +55,8 @@
 .reset {
   background: none;
   border: none;
-  color: #555;
-  font-size: 0.95rem;
+  color: $gray-900;
+  font-size: $text-md;
   cursor: pointer;
 
   &:hover {
@@ -59,14 +64,15 @@
   }
 }
 
-.save {
+.button-save {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
   border-radius: 6px;
-  font-size: 0.95rem;
+  font-size: $text-md;
   cursor: pointer;
+  border: 1px solid $gray-200;
 
   &:disabled {
     opacity: 0.5;
