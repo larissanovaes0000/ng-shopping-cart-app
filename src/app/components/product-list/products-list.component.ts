@@ -1,17 +1,9 @@
 import {
-  AfterContentInit,
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
-  Input,
-  OnInit,
-  QueryList,
-  TemplateRef,
-  ViewChild,
+  Input
 } from "@angular/core";
 
-import { ForProductDirective } from "../../core/directives/for-product.directive";
 import { Product } from "../../core/interfaces/product.interface";
 
 @Component({
@@ -20,89 +12,6 @@ import { Product } from "../../core/interfaces/product.interface";
   styleUrls: ["products-list.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class ProductsListComponent
-  implements OnInit, AfterContentInit, AfterViewInit
-{
-  @ViewChild(ForProductDirective, { read: ForProductDirective, static: true })
-  defaultTemplate: ForProductDirective;
-
-  @ContentChildren(ForProductDirective, { read: ForProductDirective })
-  productContainers = new QueryList<ForProductDirective>();
-
+export class ProductsListComponent {
   @Input() products: Product[];
-
-  templates: { [type: string]: TemplateRef<any> } = {};
-
-  productsList: Product[] = [
-    {
-      id: 1,
-      name: "Product Name",
-      description: "Product description",
-      price: 12.5,
-    },
-    {
-      id: 2,
-      name: "Another Product",
-      description: "Another description",
-      price: 15,
-    },
-    {
-      id: 3,
-      name: "Yet Another Product",
-      description: "Yet another description",
-      price: 20,
-    },
-    {
-      id: 4,
-      name: "Yet Another Product",
-      description: "Yet another description",
-      price: 30,
-    },
-    {
-      id: 5,
-      name: "Yet Another Product",
-      description: "Yet another description",
-      price: 30,
-    },
-    {
-      id: 6,
-      name: "Yet Another Product",
-      description: "Yet another description",
-      price: 30,
-    },
-    {
-      id: 7,
-      name: "Yet Another Product",
-      description: "Yet another description",
-      price: 30,
-    },
-  ];
-
-  constructor() {}
-
-  ngOnInit() {}
-
-  ngAfterContentInit(): void {
-    this.productContainers.forEach((container) => {
-      this.templates[container.forProductOfType] = container.template;
-    });
-  }
-
-  ngAfterViewInit(): void {}
-
-  getTemplate(product: Product): TemplateRef<any> {
-    let template: TemplateRef<any>;
-
-    if (product.type) {
-      template = this.templates[product.type];
-    }
-
-    return template;
-  }
-
-  getContext(product: Product) {
-    return {
-      $implicit: product,
-    };
-  }
 }
