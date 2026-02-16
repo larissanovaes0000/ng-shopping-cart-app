@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductItemComponent } from "./product-item/product-item.component";
 import { AlertComponent } from './alert/alert.component';
+import { SortComponent } from './sort/sort.component';
 
 const components = [
   ProductsListComponent,
@@ -18,11 +19,12 @@ const components = [
   ProductFormComponent,
   NavbarComponent,
   ProductItemComponent,
-  AlertComponent
+  AlertComponent,
+  SortComponent
 ];
 
 @NgModule({
-  declarations: [components, AlertComponent],
+  declarations: [components, AlertComponent, SortComponent],
   imports: [BrowserModule, CoreModule, FormsModule, ReactiveFormsModule],
   exports: [components],
 })

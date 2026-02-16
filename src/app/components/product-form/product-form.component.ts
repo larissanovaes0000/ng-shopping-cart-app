@@ -16,7 +16,7 @@ export class ProductFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.alertService.success("Produto criado com sucesso!")
+    
   }
 
   form = this.fb.group({

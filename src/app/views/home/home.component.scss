@@ -15,6 +15,10 @@
     align-items: center;
     padding: 24px 0 48px 0;
 
+    @media screen and (max-width: 767px) {
+      flex-wrap: wrap;
+    }
+
     .main-title {
       color: $orange;
       font-weight: $font-bold;
@@ -24,24 +28,11 @@
         font-size: $title-md;
       }
     }
-
-    @media screen and (max-width: 767px) {
-      flex-wrap: wrap;
-    }
   }
 
-  .sort-button {
-    display: flex;
-    align-items: center;
-    width: 108px;
-    justify-content: space-between;
-    color: $gray-900;
-
-    &.mobile {
-      margin-left: auto;
-      margin-top: 48px;
-      font-size: $title-sm;
-      width: 150px;
+  .product-form {
+    @media screen and (max-width: 767px) {
+      margin-bottom: 48px;
     }
   }
 

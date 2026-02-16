@@ -12,8 +12,8 @@ import { map, startWith } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomePageComponent implements OnInit {
-  
   products$: Observable<Product[]>;
+  showSortOptions = false;
 
   isMobile$ = merge(of(window.innerWidth), fromEvent(window, "resize")).pipe(
     map(() => window.innerWidth <= 767),
@@ -29,5 +29,33 @@ export class HomePageComponent implements OnInit {
     this.productsService.getProducts().subscribe((data: Product[]) => {
       this.products$ = of(data);
     });
+  }
+
+  toggleSortOptions() {
+    this.showSortOptions = !this.showSortOptions;
+  }
+
+  onSortChange(order: 'asc' | 'desc') {
+    if (order === 'asc') {
+      this.products$ = this.products$.pipe(
+        map((products) => [...products].sort((a, b) => a.price - b.price))
+      );
+    } else {
+      this.products$ = this.products$.pipe(
+        map((products) => [...products].sort((a, b) => b.price - a.price))
+      );
+    }
+  }
+
+  sortLowToHight() {
+    this.products$ = this.products$.pipe(
+      map((products) => [...products].sort((a, b) => a.price - b.price)),
+    );
+  }
+
+  sortHighToLow() {
+    this.products$ = this.products$.pipe(
+      map((products) => [...products].sort((a, b) => b.price - a.price)),
+    );
   }
 }
