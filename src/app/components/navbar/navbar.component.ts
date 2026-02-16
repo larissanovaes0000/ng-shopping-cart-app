@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { CartService } from "@services/cart-service/cart.service";
+import { map } from "rxjs/internal/operators/map";
 
 @Component({
   selector: "app-navbar",
@@ -7,12 +9,20 @@ import { Component, OnInit } from "@angular/core";
 })
 export class NavbarComponent implements OnInit {
   openCartInformation = false;
+  cartItems$ = this.cartService.getCartItems();
+  totalQuantity$ = this.cartService.getTotalQuantity();
+  totalAmount$ = this.cartService.getTotalAmount();
+  emptyCart$ = this.cartItems$.pipe(map((items) => items.length === 0));
 
-  constructor() {}
+  constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   handleCartInformation() {
     this.openCartInformation = !this.openCartInformation;
+  }
+
+  clearCart(): void {
+    this.cartService.clearCart();
   }
 }

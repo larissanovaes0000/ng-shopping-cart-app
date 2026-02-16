@@ -14,9 +14,13 @@
         src="../../../../assets/img/cart-shopping.png"
         alt="cart icon"
       />
-      <span class="items-number">3</span>
+      <span class="items-number">
+        {{ totalQuantity$ | async }}
+      </span>
     </div>
-    <span class="cart-count">R$ 1.200,00</span>
+    <span class="cart-count">
+      {{ totalAmount$ | async | currency: "BRL" }}
+    </span>
 
     <div class="cart-items-list">
       <button class="cart-down-arrow" (click)="handleCartInformation()">
@@ -30,22 +34,31 @@
         <div class="cart-header">
           <h2>Cart Items</h2>
 
-          <button class="clear-all">
+          <button class="clear-all" (click)="clearCart()" [disabled]="emptyCart$ | async">
             <i class="bi bi-trash3"></i>
             clear all
           </button>
         </div>
 
+        <p *ngIf="emptyCart$ | async">Your cart is empty.</p>
+
         <ul class="cart-list">
-          <li class="cart-item">
+          <li class="cart-item" *ngFor="let item of cartItems$ | async">
             <button class="remove-item">
               <i class="bi bi-trash3"></i>
             </button>
-            <span class="item-name">2 x Product Name</span>
-            <span class="item-price">R$ 25,00</span>
+            <span class="item-name"
+              >{{ item.quantity }} x {{ item.product.name }}</span
+            >
+            <span class="item-price">
+              {{
+                item.product.price * item.quantity
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </span>
           </li>
 
-          <li class="cart-item">
+          <!-- <li class="cart-item">
             <button class="remove-item">
               <i class="bi bi-trash3"></i>
             </button>
@@ -59,7 +72,7 @@
             </button>
             <span class="item-name">1 x Product Name</span>
             <span class="item-price">R$ 50,00</span>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>

@@ -112,6 +112,12 @@
           &:hover {
             text-decoration: underline;
           }
+
+          &:disabled {
+            color: $gray-300;
+            cursor: not-allowed;
+            text-decoration: none;
+          }
         }
 
         .cart-list {
