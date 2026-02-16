@@ -17,7 +17,7 @@ import { Product } from '../../core/interfaces/product.interface';
 @Component({
     selector: 'products-list',
     templateUrl: 'products-list.component.html',
-    styleUrls: ['products-list.component.css'],
+    styleUrls: ['products-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class ProductsListComponent implements OnInit, AfterContentInit, AfterViewInit {
@@ -59,3 +59,4 @@ export class ProductsListComponent implements OnInit, AfterContentInit, AfterVie
         };
     }
 }
+
