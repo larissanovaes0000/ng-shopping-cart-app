@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
 import { CartItemControlComponent } from './cart-item-control.component';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../services/cart-service/cart.service';
 import { Product } from '../../core/interfaces/product.interface';
 
 describe('CartItemControlComponent', () => {

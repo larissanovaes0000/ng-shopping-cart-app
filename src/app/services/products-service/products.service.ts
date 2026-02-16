@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductsDataService } from './products-data.service';
+import { ProductsDataService } from '@services/products-data-service/products-data.service';
 
 @Injectable()
 export class ProductsService {

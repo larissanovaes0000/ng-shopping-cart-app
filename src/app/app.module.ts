@@ -7,10 +7,10 @@ import { InMemoryBackendService } from './in-memory-backend-service'
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './views/home/home.component';
-import { ProductsDataService } from './services/products-data.service';
-import { ProductsService } from './services/products.service';
-import { CartDataService } from './services/cart-data.service';
-import { CartService } from './services/cart.service';
+import { ProductsDataService } from './services/products-data-service/products-data.service';
+import { ProductsService } from '@services/products-service/products.service';
+import { CartDataService } from './services/cart-data-service/cart-data.service';
+import { CartService } from './services/cart-service/cart.service';
 import { CoreModule } from './core/core.module';
 import { ComponentsModule } from './components/components.module';
 

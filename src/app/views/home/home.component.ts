@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ProductsService } from '../../services/products.service';
 import { Product } from '../../core/interfaces/product.interface';
+import { ProductsService } from '@services/products-service/products.service';
 
 @Component({
     selector: 'home-page',

@@ -1,15 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { BaseDataService } from './base-data.service';
-import { Injectable } from '@angular/core';
-import { CartItem } from '../core/interfaces/cart-item.interface';
+import { HttpClient } from "@angular/common/http";
+import { BaseDataService } from "../base-data-service/base-data.service";
+import { Injectable } from "@angular/core";
+import { CartItem } from "../../core/interfaces/cart-item.interface";
 
 @Injectable()
 export class CartDataService extends BaseDataService<CartItem> {
-  API_URL = 'http://localhost/api/cart/';
+  API_URL = "http://localhost/api/cart/";
 
-  constructor(
-    protected _http: HttpClient,
-  ) {
+  constructor(protected _http: HttpClient) {
     super(_http);
   }
 

@@ -9,7 +9,7 @@ import { Subscription } from "rxjs";
 
 import { Product } from "../../core/interfaces/product.interface";
 import { CartItem } from "../../core/interfaces/cart-item.interface";
-import { CartService } from "../../services/cart.service";
+import { CartService } from "../../services/cart-service/cart.service";
 
 @Component({
   selector: "cart-item-control",
