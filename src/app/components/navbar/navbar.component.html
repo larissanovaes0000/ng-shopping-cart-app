@@ -1,0 +1,67 @@
+<nav class="navbar-component w-100 d-flex justify-content-between">
+  <div class="d-flex align-items-center">
+    <img src="../../../../assets/img/logo.png" alt="logo" />
+    <ul>
+      <li class="navbar-item">
+        <a href="#">Produtos</a>
+      </li>
+    </ul>
+  </div>
+  <div class="cart">
+    <div class="cart-quantity">
+      <img
+        class="cart-icon"
+        src="../../../../assets/img/cart-shopping.png"
+        alt="cart icon"
+      />
+      <span class="items-number">3</span>
+    </div>
+    <span class="cart-count">$1200,00</span>
+
+    <div class="cart-items-list">
+      <button class="cart-down-arrow" (click)="handleCartInformation()">
+        <img
+          src="../../../../assets/img/chevron-down.png"
+          alt="chevron down icon"
+        />
+      </button>
+
+      <div class="cart-card" *ngIf="openCartInformation">
+        <div class="cart-header">
+          <h2>Cart Items</h2>
+
+          <button class="clear-all">
+            <i class="bi bi-trash3"></i>
+            clear all
+          </button>
+        </div>
+
+        <ul class="cart-list">
+          <li class="cart-item">
+            <button class="remove-item">
+              <i class="bi bi-trash3"></i>
+            </button>
+            <span class="item-name">2 x Product Name</span>
+            <span class="item-price">R$ 25,00</span>
+          </li>
+
+          <li class="cart-item">
+            <button class="remove-item">
+              <i class="bi bi-trash3"></i>
+            </button>
+            <span class="item-name">3 x Product Name</span>
+            <span class="item-price">R$ 15,00</span>
+          </li>
+
+          <li class="cart-item">
+            <button class="remove-item">
+              <i class="bi bi-trash3"></i>
+            </button>
+            <span class="item-name">1 x Product Name</span>
+            <span class="item-price">R$ 50,00</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

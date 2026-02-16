@@ -1,10 +1,23 @@
 .list-group {
-    display: flex;
+  display: flex;
 }
 
-.list-group>.list-group-item {
-    padding: 1rem;
-    margin: .5rem;
-    border-radius: 10px;
-    border: 1px solid lightgrey;
+.list-group > .list-group-item {
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+}
+
+.products-grid {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+  @media screen and (max-width: 767px) {
+   app-product-item{
+    width: 100%;
+   }
+  }
 }

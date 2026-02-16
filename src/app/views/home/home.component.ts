@@ -1,24 +1,21 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Observable } from "rxjs";
 
-import { Product } from '../../core/interfaces/product.interface';
-import { ProductsService } from '@services/products-service/products.service';
+import { Product } from "../../core/interfaces/product.interface";
+import { ProductsService } from "@services/products-service/products.service";
 
 @Component({
-    selector: 'home-page',
-    templateUrl: 'home.component.html',
-    styles: [],
-    changeDetection: ChangeDetectionStrategy.Default
+  selector: "home-page",
+  templateUrl: "home.component.html",
+  styleUrls: ["home.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomePageComponent implements OnInit {
-    products$: Observable<Product[]>;
+  products$: Observable<Product[]>;
 
-    constructor(
-        public products: ProductsService,
-    ) {
-        this.products$ = this.products.fetchAll();
-    }
+  constructor(public products: ProductsService) {
+    this.products$ = this.products.fetchAll();
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {}
 }

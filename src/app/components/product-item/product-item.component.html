@@ -1,0 +1,23 @@
+<div class="product-card">
+  <div class="image-placeholder"></div>
+
+  <div class="content">
+    <h3 class="name">{{ product.name }}</h3>
+    <p class="description">{{ product.description }}</p>
+
+    <span class="price">R$ {{ product.price | number: "1.2-2" }}</span>
+
+    <!-- NOT IN CART -->
+    <button *ngIf="quantity === 0" class="add-to-cart" (click)="addToCart()">
+      <span class="icon">+</span>
+      Add to cart
+    </button>
+
+    <!-- IN CART -->
+    <div *ngIf="quantity > 0" class="quantity-control">
+      <button (click)="decrease()">−</button>
+      <span class="qty">{{ quantity }}</span>
+      <button (click)="increase()">+</button>
+    </div>
+  </div>
+</div>

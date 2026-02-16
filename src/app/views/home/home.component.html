@@ -1,37 +1,38 @@
-<div class="">
-  <div>
-    <product-form></product-form>
+<div class="home">
+  <div class="header">
+    <h1 class="main-title">Welcome to Aubay’s shopping</h1>
+    <button class="sort-button">
+      <span>sort by price</span>
+      <i class="bi bi-chevron-down"></i>
+    </button>
   </div>
-  <div class="">
-    <products-list [products]="products$ | async">
-      <ng-container *forProduct="let product; ofType: 'default'">
-        <div class="product-image">
-        </div>
-        <h4>{{ product.name }} (custom default)</h4>
-        <img [attr.src]="product.imgUrl" alt="product Img" width="100">
-        <cart-item-control [product]="product"></cart-item-control>
-      </ng-container>
 
-      <ng-container *forProduct="let product; ofType: 'promo'">
-        <div class="product-image"></div>
-        <h4>{{ product.name }} ({{ product.type }})</h4>
-        <cart-item-control [product]="product"></cart-item-control>
-      </ng-container>
+  <div class="d-flex flex-wrap">
+    <div class="col-xs-12 col-sm-12 col-md-4 p-0 product-form">
+      <product-form></product-form>
+    </div>
 
-      <ng-container *forProduct="let product; ofType: 'outlet'">
-        <div class="product-image"></div>
-        <h4>{{ product.name }} ({{ product.type }})</h4>
-        <cart-item-control [product]="product"></cart-item-control>
-      </ng-container>
-    </products-list>
-  </div>
-  <hr />
-  <div class="">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">In Cart</h4>
-      </div>
-      <cart></cart>
+    <div class="col-xs-12 col-sm-12 col-md-8 products-list">
+      <products-list [products]="products$ | async">
+        <ng-container *forProduct="let product; ofType: 'default'">
+          <div class="product-image"></div>
+          <h4>{{ product.name }} (custom default)</h4>
+          <img [attr.src]="product.imgUrl" alt="product Img" width="100" />
+          <cart-item-control [product]="product"></cart-item-control>
+        </ng-container>
+
+        <ng-container *forProduct="let product; ofType: 'promo'">
+          <div class="product-image"></div>
+          <h4>{{ product.name }} ({{ product.type }})</h4>
+          <cart-item-control [product]="product"></cart-item-control>
+        </ng-container>
+
+        <ng-container *forProduct="let product; ofType: 'outlet'">
+          <div class="product-image"></div>
+          <h4>{{ product.name }} ({{ product.type }})</h4>
+          <cart-item-control [product]="product"></cart-item-control>
+        </ng-container>
+      </products-list>
     </div>
   </div>
 </div>

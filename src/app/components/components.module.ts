@@ -6,17 +6,22 @@ import { CartComponent } from "./cart/cart.component";
 import { ProductsListComponent } from "./product-list/products-list.component";
 import { CoreModule } from "../core/core.module";
 import { ProductFormComponent } from "./product-form/product-form.component";
+import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ProductItemComponent } from "./product-item/product-item.component";
 
 const components = [
   ProductsListComponent,
   CartComponent,
   CartItemControlComponent,
   ProductFormComponent,
+  NavbarComponent,
+  ProductItemComponent
 ];
 
 @NgModule({
   declarations: [components],
-  imports: [BrowserModule, CoreModule],
+  imports: [BrowserModule, CoreModule, FormsModule, ReactiveFormsModule],
   exports: [components],
 })
 export class ComponentsModule {}

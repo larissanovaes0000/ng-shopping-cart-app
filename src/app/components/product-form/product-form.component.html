@@ -1,1 +1,36 @@
-<p>product-form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="product-form">
+
+  <h2 class="title">Add a new Product</h2>
+
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" />
+  </div>
+
+  <div class="field">
+    <label for="description">Description</label>
+    <input id="description" type="text" formControlName="description" />
+  </div>
+
+  <div class="field">
+    <label for="price">Price</label>
+    <input id="price" type="number" formControlName="price" />
+  </div>
+
+  <div class="field">
+    <label for="imgUrl">Img URL</label>
+    <input id="imgUrl" type="text" formControlName="imgUrl" />
+  </div>
+
+  <div class="actions">
+    <button type="button" class="reset" (click)="onReset()">
+      Reset
+    </button>
+
+    <button type="submit" class="save" [disabled]="form.invalid">
+      ✓ Save
+    </button>
+  </div>
+
+</form>
+

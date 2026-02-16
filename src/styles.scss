@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/fonts' as font;
+@import "styles/_reset.scss";
+@import "styles/_colors.scss";
+
+body {
+  font-family: font.$font-family-base;
+  font-size: font.$text-md;
+  font-weight: font.$font-regular;
+}
