@@ -1,7 +1,7 @@
 <div class="home">
   <div class="header">
     <h1 class="main-title">Welcome to Aubay’s shopping</h1>
-    <button class="sort-button">
+    <button *ngIf="!(isMobile$ | async)" class="sort-button">
       <span>sort by price</span>
       <i class="bi bi-chevron-down"></i>
     </button>
@@ -12,7 +12,13 @@
       <product-form></product-form>
     </div>
 
+    <button *ngIf="isMobile$ | async" class="sort-button mobile">
+      <span>sort by price</span>
+      <i class="bi bi-chevron-down"></i>
+    </button>
+
     <div class="col-xs-12 col-sm-12 col-md-8 products-list">
+
       <products-list [products]="products$ | async">
         <ng-container *forProduct="let product; ofType: 'default'">
           <div class="product-image"></div>
