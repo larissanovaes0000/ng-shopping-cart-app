@@ -1,75 +1,105 @@
-import { CartDataService } from "../cart-data-service/cart-data.service";
 import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
+import { map } from "rxjs/internal/operators/map";
 import { CartItem } from "../../core/interfaces/cart-item.interface";
-import { Subject } from "rxjs";
-import { map } from "rxjs/operators";
 import { Product } from "../../core/interfaces/product.interface";
 
-interface CartProducts {
-  items: CartItem[];
-  total: number;
-}
-
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class CartService {
-  protected _products = {
-    items: [],
-    total: 0,
-  };
+  cartSubject = new BehaviorSubject<CartItem[]>(this.loadFromStorage());
 
-  protected _cartState = new Subject<CartProducts>();
-
-  constructor(protected dataService: CartDataService) {}
-
-  getStoredCartItems() {
-    this.dataService.fetchAll().subscribe();
+  constructor() {
+    console.log("CartService instantiated");
   }
 
-  addProduct(product: Product) {}
-
-  removeProduct(product: Product, shouldRemoveAll = false) {}
-
-  //HELPER METHODS
-
-  protected updateCartState(products: CartProducts) {
-    this._products = products;
-    this._cartState.next(products);
+  private get snapshot(): CartItem[] {
+    return this.cartSubject.value;
   }
 
-  protected calculateTotal(items: CartItem[]): number {
-    return items.reduce((total, item) => (total += item.subtotal), 0);
+  getCartItems(): Observable<CartItem[]> {
+    return this.cartSubject.asObservable();
   }
 
-  protected calculateSubtotal(item: CartItem): CartItem {
-    item.subtotal = item.product.price * item.amount;
-    return item;
+  setCartItems(items: CartItem[]): void {
+    this.cartSubject.next(items);
+    this.saveToStorage(items);
   }
 
-  protected getProducts() {
-    return this._products;
+  addProduct(product: Product): void {
+    const items = [...this.snapshot];
+    const index = items.findIndex((i) => i.product.id === product.id);
+
+    if (index > -1) {
+      items[index] = {
+        ...items[index],
+        quantity: items[index].quantity + 1,
+      };
+    } else {
+      items.push({
+        product,
+        quantity: 1,
+        amount: 0,
+        subtotal: 0,
+      });
+    }
+
+    this.setCartItems(items);
   }
 
-  getItems() {
-    return this.getProducts().items;
+  removeProduct(productId: number): void {
+    const items = this.snapshot.filter((item) => item.product.id !== productId);
+    this.setCartItems(items);
   }
 
-  getItem(id: number) {
-    return this.getProducts().items.find((item) => item.id === id);
+  updateQuantity(productId: number, quantity: number): void {
+    if (quantity <= 0) {
+      this.removeProduct(productId);
+      return;
+    }
+
+    const items = this.snapshot.map((item) =>
+      item.product.id === productId ? { ...item, quantity } : item,
+    );
+
+    this.setCartItems(items);
   }
 
-  getTotal() {
-    return this.getProducts().total;
+  getTotalQuantity(): Observable<number> {
+    return this.getCartItems().pipe(
+      map((items) => items.reduce((total, item) => total + item.quantity, 0)),
+    );
   }
 
-  getCartUpdates() {
-    return this._cartState.pipe(map(() => this.getItems()));
+  getTotalAmount(): Observable<number> {
+    return this.getCartItems().pipe(
+      map((items) =>
+        items.reduce(
+          (total, item) => total + item.product.price * item.quantity,
+          0,
+        ),
+      ),
+    );
   }
 
-  getItemUpdates(id: number) {
-    return this._cartState.pipe(map(() => this.getItem(id)));
+  clearCart(): void {
+    localStorage.removeItem("app_cart");
+    this.cartSubject.next([]);
   }
 
-  getTotalUpdates() {
-    return this._cartState.pipe(map((s) => s.total));
+  private saveToStorage(items: CartItem[]): void {
+    localStorage.setItem("app_cart", JSON.stringify(items));
+  }
+
+  loadFromStorage(): CartItem[] {
+    const data = localStorage.getItem("app_cart");
+    return data ? JSON.parse(data) : [];
+  }
+
+  // clean storage on logout
+  logout(): void {
+    localStorage.removeItem("app_cart");
+    this.cartSubject.next([]);
   }
 }

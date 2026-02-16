@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { AlertService } from "@services/alert/alert.service";
+import { ProductsService } from "@services/products-service/products.service";
 
 @Component({
   selector: "product-form",
@@ -7,9 +9,15 @@ import { FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./product-form.component.scss"],
 })
 export class ProductFormComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductsService,
+    private alertService: AlertService,
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.alertService.success("Produto criado com sucesso!")
+  }
 
   form = this.fb.group({
     name: ["", Validators.required],
@@ -23,8 +31,10 @@ export class ProductFormComponent implements OnInit {
 
     console.log("Product:", this.form.value);
 
-    // aqui você pode chamar um service
-    // this.productService.create(this.form.value);
+    this.productService.createProduct(this.form.value).subscribe({
+      next: () => this.alertService.success("Produto criado com sucesso!"),
+      error: () => this.alertService.error("Erro ao criar produto"),
+    });
   }
 
   onReset() {

@@ -9,6 +9,7 @@ import { ProductFormComponent } from "./product-form/product-form.component";
 import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductItemComponent } from "./product-item/product-item.component";
+import { AlertComponent } from './alert/alert.component';
 
 const components = [
   ProductsListComponent,
@@ -16,11 +17,12 @@ const components = [
   CartItemControlComponent,
   ProductFormComponent,
   NavbarComponent,
-  ProductItemComponent
+  ProductItemComponent,
+  AlertComponent
 ];
 
 @NgModule({
-  declarations: [components],
+  declarations: [components, AlertComponent],
   imports: [BrowserModule, CoreModule, FormsModule, ReactiveFormsModule],
   exports: [components],
 })

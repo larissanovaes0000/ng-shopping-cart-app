@@ -12,15 +12,22 @@ import { map, startWith } from "rxjs/operators";
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomePageComponent implements OnInit {
+  
   products$: Observable<Product[]>;
 
   isMobile$ = merge(of(window.innerWidth), fromEvent(window, "resize")).pipe(
     map(() => window.innerWidth <= 767),
   );
-  
-  constructor(public products: ProductsService) {
-    this.products$ = this.products.fetchAll();
+
+  constructor(private productsService: ProductsService) {}
+
+  ngOnInit() {
+    this.getProductsList();
   }
 
-  ngOnInit() {}
+  getProductsList() {
+    this.productsService.getProducts().subscribe((data: Product[]) => {
+      this.products$ = of(data);
+    });
+  }
 }
