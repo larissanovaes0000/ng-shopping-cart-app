@@ -10,6 +10,7 @@ import { ComponentsModule } from "./components/components.module";
 import { CoreModule } from "./core/core.module";
 import { CartService } from "./services/cart/cart.service";
 import { HomePageComponent } from "./views/home/home.component";
+import { ViewportService } from "@services/viewport/viewport.service";
 
 registerLocaleData(localePt);
 
@@ -28,7 +29,8 @@ registerLocaleData(localePt);
     { provide: LOCALE_ID, useValue: "pt-BR" },
     ProductsService,
     CartService,
-    AlertService
+    AlertService,
+    ViewportService
   ],
   bootstrap: [AppComponent],
 })
