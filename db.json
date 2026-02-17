@@ -2,11 +2,11 @@
   "products": [
     {
       "id": "1",
-      "name": "iPhoneeeeee",
+      "name": "iPhone",
       "price": 500,
       "type": "default",
       "description": "Apple mobile phone",
-      "imgUrl": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-finish-select-202207-pink?w=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1693063160403"
+      "imgUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQyG9bNHjsmgDU_S-wmqTJuhyZRKIWVrdGKktHOmzYaGbBOwJnlDUcEPJprLW0HMjsKNHJ_hH0kZEBir7BDLse-YOpgpBEmZwKQGswyTc-IbVPAC7TKlx3KuI-xhw3R7HRks_aZB3U&usqp=CAc"
     },
     {
       "id": "2",
@@ -66,31 +66,45 @@
     },
     {
       "id": "6f35",
-      "name": "sdsd",
-      "description": "asdasd",
-      "price": 12,
-      "imgUrl": "sdsd"
+      "name": "Apple Watch SE",
+      "description": "Caixa em alumínio meia‑noite de 40 mm com Bracelete desportiva meia‑noite - P/M",
+      "price": 2659,
+      "imgUrl": "https://m.media-amazon.com/images/I/51+4V98kzgL._AC_SX679_.jpg"
     },
     {
       "id": "23b9",
-      "name": "menine",
-      "description": "menine",
-      "price": 12,
-      "imgUrl": "drfdfdf"
+      "name": "Abajur de Mesa",
+      "description": "Com Cúpula Branca – Toque Sofisticado para sua Decoração Luminária De Mesa",
+      "price": 65,
+      "imgUrl": "https://m.media-amazon.com/images/I/51eK65TLe1L._AC_SY741_.jpg"
     },
     {
       "id": "03ad",
-      "name": "Product Test",
-      "description": "swfwewe",
-      "price": 78400,
-      "imgUrl": "werwer"
+      "name": "Headset Gamer",
+      "description": "Redragon Zeus Lite Preto P3 H510-LT",
+      "price": 159,
+      "imgUrl": "https://m.media-amazon.com/images/I/61pvhJpLRRL._AC_SX522_.jpg"
     },
     {
       "id": "172a",
-      "name": "ssdfsdf",
-      "description": "sdfsdfsdf",
-      "price": 8000,
-      "imgUrl": "sdfsdf"
+      "name": "Mouse com Fio Multi Classic",
+      "description": "Box USB 1200 DPI com Design Compacto e Cabo de 1,2m – Preto MO300",
+      "price": 19.45,
+      "imgUrl": "https://m.media-amazon.com/images/I/415cNkqCWlL._AC_SX522_.jpg"
+    },
+    {
+      "id": "9a6a",
+      "name": "Teclado USB",
+      "description": "Multimidia C3Tech KB-M10BK - ABNT2 - Preto",
+      "price": 27.99,
+      "imgUrl": "https://cdn.shoppub.io/cdn-cgi/image/w=1000,h=1000,q=80,f=auto/oficinadosbits/media/uploads/produtos/foto/reuxysnw/file.png"
+    },
+    {
+      "id": "6d0a",
+      "name": "CÂMERA EOS T7",
+      "description": "COM LENTE EF-S 18-55",
+      "price": 3599,
+      "imgUrl": "https://m.media-amazon.com/images/I/616aA6gdf+L._AC_SX679_.jpg"
     }
   ]
 }

@@ -15,9 +15,7 @@ export class ProductFormComponent implements OnInit {
     private alertService: AlertService,
   ) {}
 
-  ngOnInit(): void {
-    this.alertService.success('jdjdjd')
-  }
+  ngOnInit(): void {}
 
   form = this.fb.group({
     name: ["", [Validators.required, Validators.maxLength(30)]],
