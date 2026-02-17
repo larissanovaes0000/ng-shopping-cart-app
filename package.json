@@ -3,13 +3,14 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
+    "start": "concurrently -k \"npm run start:web\" \"npm run start:api\"",
+    "start:web": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
     "build": "ng build",
     "test:watch": "set NODE_OPTIONS=--openssl-legacy-provider && ng test --karma-config karma.conf.js --watch",
     "test": "set NODE_OPTIONS=--openssl-legacy-provider && ng test --karma-config karma.conf.js",
     "mock:api": "json-server --watch db.json --port 3000",
     "start:api": "json-server --watch db.json --port 3000",
-    "dev": "concurrently -k \"npm run start\" \"npm run start:api\"\""
+    "dev": "npm run start"
   },
   "dependencies": {
     "@angular/animations": "~9.1.3",

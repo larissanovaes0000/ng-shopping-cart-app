@@ -14,6 +14,13 @@ describe('AlertService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('starts with null alert state', () => {
+    let latest: any = 'initial';
+    service.alert$.subscribe((value) => (latest = value));
+
+    expect(latest).toBeNull();
+  });
+
   it('emits success alert and auto clears after 3 seconds', fakeAsync(() => {
     let latest: any;
     service.alert$.subscribe((value) => (latest = value));
@@ -35,4 +42,36 @@ describe('AlertService', () => {
     service.clear();
     expect(latest).toBeNull();
   });
+
+  it('emits warning alert', fakeAsync(() => {
+    let latest: any;
+    service.alert$.subscribe((value) => (latest = value));
+
+    service.warning('warn');
+    expect(latest).toEqual({ message: 'warn', type: 'warning' });
+    tick(3000);
+    expect(latest).toBeNull();
+  }));
+
+  it('emits info alert', fakeAsync(() => {
+    let latest: any;
+    service.alert$.subscribe((value) => (latest = value));
+
+    service.info('info');
+    expect(latest).toEqual({ message: 'info', type: 'info' });
+    tick(3000);
+    expect(latest).toBeNull();
+  }));
+
+  it('does not auto clear before 3 seconds', fakeAsync(() => {
+    let latest: any;
+    service.alert$.subscribe((value) => (latest = value));
+
+    service.error('error');
+    tick(2999);
+    expect(latest).toEqual({ message: 'error', type: 'danger' });
+
+    tick(1);
+    expect(latest).toBeNull();
+  }));
 });
