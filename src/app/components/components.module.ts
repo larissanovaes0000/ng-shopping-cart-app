@@ -8,6 +8,7 @@ import { ProductItemComponent } from "./product-item/product-item.component";
 import { AlertComponent } from './alert/alert.component';
 import { SortComponent } from './sort/sort.component';
 import { CartComponent } from './cart/cart.component';
+import { NgxMaskModule } from "ngx-mask";
 
 const components = [
   ProductFormComponent,
@@ -20,7 +21,7 @@ const components = [
 
 @NgModule({
   declarations: [...components],
-  imports: [BrowserModule, CoreModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, CoreModule, FormsModule, ReactiveFormsModule, NgxMaskModule.forRoot()],
   exports: [...components],
 })
 export class ComponentsModule {}

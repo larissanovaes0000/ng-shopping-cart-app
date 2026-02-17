@@ -34,6 +34,6 @@ export class AlertService {
 
   private emit(message: string, type: AlertType) {
     this.alertSubject.next({ message, type });
-    setTimeout(() => this.clear(), 3000);
+   // setTimeout(() => this.clear(), 3000);
   }
 }

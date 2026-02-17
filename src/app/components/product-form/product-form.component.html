@@ -38,8 +38,12 @@
     <label for="price">Price</label>
     <input
       id="price"
-      type="number"
+      type="text"
       formControlName="price"
+      mask="separator.2"
+      thousandSeparator="."
+      decimalMarker=","
+      prefix="R$ "
       [class.invalid]="
         hasError('price', 'required') || hasError('price', 'min')
       "
@@ -67,7 +71,16 @@
   </div>
 
   <div class="actions">
-    <button type="button" class="reset" (click)="onReset()" [disabled]="form.untouched">Reset</button>
-    <button type="submit" class="button-save" [disabled]="form.invalid">Save</button>
+    <button
+      type="button"
+      class="reset"
+      (click)="onReset()"
+      [disabled]="form.untouched"
+    >
+      Reset
+    </button>
+    <button type="submit" class="button-save" [disabled]="form.invalid">
+      Save
+    </button>
   </div>
 </form>

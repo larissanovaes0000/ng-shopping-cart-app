@@ -24,6 +24,7 @@
     "bootstrap": "~4.4.1",
     "bootstrap-icons": "^1.13.1",
     "jquery": "^3.7.1",
+    "ngx-mask": "^9.1.4",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.5",
     "tslib": "^1.11.1",

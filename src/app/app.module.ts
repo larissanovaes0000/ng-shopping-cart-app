@@ -13,6 +13,7 @@ import { HomePageComponent } from "./views/home/home.component";
 import { ViewportService } from "@services/viewport/viewport.service";
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { NgxMaskModule } from "ngx-mask";
 
 registerLocaleData(localePt);
 
@@ -26,7 +27,8 @@ registerLocaleData(localePt);
     HttpClientModule, 
     ComponentsModule, 
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxMaskModule.forRoot() 
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-BR" },

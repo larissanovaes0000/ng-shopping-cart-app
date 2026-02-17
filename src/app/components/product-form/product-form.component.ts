@@ -15,7 +15,9 @@ export class ProductFormComponent implements OnInit {
     private alertService: AlertService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.alertService.success('jdjdjd')
+  }
 
   form = this.fb.group({
     name: ["", [Validators.required, Validators.maxLength(30)]],
@@ -26,11 +28,21 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) {
-    this.form.markAllAsTouched();
-    return;
-  }
+      this.form.markAllAsTouched();
+      return;
+    }
 
-    this.productsService.createProduct(this.form.value).subscribe({
+    const rawPrice = this.form.value.price
+      .replace("R$", "")
+      .replace(/\./g, "")
+      .replace(",", ".");
+
+    const payload = {
+      ...this.form.value,
+      price: Number(rawPrice),
+    };
+
+    this.productsService.createProduct(payload).subscribe({
       next: () => {
         this.alertService.success("Produto criado com sucesso!");
         this.form.reset();
@@ -44,7 +56,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   hasError(controlName: string, error: string) {
-  const control = this.form.get(controlName);
-  return control?.touched && control?.hasError(error);
-}
+    const control = this.form.get(controlName);
+    return control?.touched && control?.hasError(error);
+  }
 }
