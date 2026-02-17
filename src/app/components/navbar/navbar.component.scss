@@ -1,5 +1,4 @@
-@import "../../../styles/_colors.scss";
-@import "../../../styles/_fonts.scss";
+@use "styles/index" as *;
 
 .navbar-component {
   background-color: $blue;
