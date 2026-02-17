@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { ASSETS } from "app/core/constants/assets.constants";
+import { ASSETS } from "app/shared/constants/assets.constants";
 
 @Component({
   selector: "app-navbar",
@@ -9,3 +9,4 @@ import { ASSETS } from "app/core/constants/assets.constants";
 export class NavbarComponent {
   logo = ASSETS.LOGO;
 }
+

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/internal/operators/map";
-import { CartItem } from "../../core/interfaces/cart-item.interface";
-import { Product } from "../../core/interfaces/product.interface";
+import { CartItem } from "../../shared/interfaces/cart-item.interface";
+import { Product } from "../../shared/interfaces/product.interface";
 
 @Injectable({
   providedIn: "root",
@@ -102,3 +102,4 @@ export class CartService {
     this.cartSubject.next([]);
   }
 }
+

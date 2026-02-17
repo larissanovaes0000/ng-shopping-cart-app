@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { CartService } from "@services/cart/cart.service";
-import { ASSETS } from "app/core/constants/assets.constants";
+import { ASSETS } from "app/shared/constants/assets.constants";
 import { map } from "rxjs/internal/operators/map";
 
 @Component({
@@ -32,3 +32,4 @@ export class CartComponent {
     this.cartService.removeProduct(productId);
   }
 }
+

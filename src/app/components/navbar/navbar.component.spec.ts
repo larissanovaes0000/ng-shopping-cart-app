@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ASSETS } from 'app/core/constants/assets.constants';
+import { ASSETS } from 'app/shared/constants/assets.constants';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -29,3 +29,4 @@ describe('NavbarComponent', () => {
     expect(component.logo).toBe(ASSETS.LOGO);
   });
 });
+

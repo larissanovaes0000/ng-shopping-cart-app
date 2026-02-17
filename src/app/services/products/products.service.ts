@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Product } from "app/core/interfaces/product.interface";
+import { Product } from "app/shared/interfaces/product.interface";
 import { environment } from "environments/environment";
 import { BehaviorSubject, combineLatest, Observable } from "rxjs";
 import { map, tap } from "rxjs/operators";
@@ -66,3 +66,4 @@ export class ProductsService {
       .pipe(tap(() => this.loadProducts()));
   }
 }
+

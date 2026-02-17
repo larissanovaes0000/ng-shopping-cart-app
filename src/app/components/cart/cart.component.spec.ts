@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { CartService } from "@services/cart/cart.service";
-import { ASSETS } from "app/core/constants/assets.constants";
+import { ASSETS } from "app/shared/constants/assets.constants";
 import { BehaviorSubject, of } from "rxjs";
 
 import { CartComponent } from "./cart.component";
@@ -73,3 +73,4 @@ describe("CartComponent", () => {
     expect(isEmpty).toBe(false);
   });
 });
+

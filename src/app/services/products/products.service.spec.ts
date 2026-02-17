@@ -3,7 +3,7 @@ import {
   HttpTestingController,
 } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
-import { Product } from "app/core/interfaces/product.interface";
+import { Product } from "app/shared/interfaces/product.interface";
 
 import { ProductsService } from "./products.service";
 
@@ -149,3 +149,4 @@ describe("ProductsService", () => {
     expect(console.error).toHaveBeenCalled();
   });
 });
+

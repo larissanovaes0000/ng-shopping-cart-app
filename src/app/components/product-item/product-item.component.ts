@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CartService } from "@services/cart/cart.service";
-import { ASSETS } from "app/core/constants/assets.constants";
-import { Product } from "app/core/interfaces/product.interface";
+import { ASSETS } from "app/shared/constants/assets.constants";
+import { Product } from "app/shared/interfaces/product.interface";
 import { Subject } from "rxjs/internal/Subject";
 import { takeUntil } from "rxjs/operators";
 
@@ -64,3 +64,4 @@ export class ProductItemComponent implements OnInit {
     this.destroy$.complete();
   }
 }
+

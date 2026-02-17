@@ -7,7 +7,6 @@ import { AlertService } from "@services/alert/alert.service";
 import { ProductsService } from "@services/products/products.service";
 import { AppComponent } from "./app.component";
 import { ComponentsModule } from "./components/components.module";
-import { CoreModule } from "./core/core.module";
 import { CartService } from "./services/cart/cart.service";
 import { HomePageComponent } from "./views/home/home.component";
 import { ViewportService } from "@services/viewport/viewport.service";
@@ -27,7 +26,6 @@ registerLocaleData(localePt);
     BrowserModule, 
     HttpClientModule, 
     ComponentsModule, 
-    CoreModule,
     AppRoutingModule,
     NgxMaskModule.forRoot() 
   ],
