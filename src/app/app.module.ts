@@ -4,13 +4,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { registerLocaleData } from "@angular/common";
 import localePt from "@angular/common/locales/pt";
 import { AlertService } from "@services/alert/alert.service";
-import { ProductsService } from "@services/products-service/products.service";
+import { ProductsService } from "@services/products/products.service";
 import { AppComponent } from "./app.component";
 import { ComponentsModule } from "./components/components.module";
 import { CoreModule } from "./core/core.module";
-import { CartDataService } from "./services/cart-data-service/cart-data.service";
-import { CartService } from "./services/cart-service/cart.service";
-import { ProductsDataService } from "./services/products-data-service/products-data.service";
+import { CartService } from "./services/cart/cart.service";
 import { HomePageComponent } from "./views/home/home.component";
 
 registerLocaleData(localePt);
@@ -28,9 +26,7 @@ registerLocaleData(localePt);
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-BR" },
-    ProductsDataService,
     ProductsService,
-    CartDataService,
     CartService,
     AlertService
   ],

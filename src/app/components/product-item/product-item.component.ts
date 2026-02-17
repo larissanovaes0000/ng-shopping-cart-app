@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { CartService } from "@services/cart-service/cart.service";
+import { CartService } from "@services/cart/cart.service";
 import { Product } from "app/core/interfaces/product.interface";
 import { Subject } from "rxjs/internal/Subject";
 import { takeUntil } from "rxjs/operators";

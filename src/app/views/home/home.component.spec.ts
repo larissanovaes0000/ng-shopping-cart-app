@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { of } from "rxjs";
 
 import { HomePageComponent } from "./home.component";
-import { ProductsService } from "@services/products-service/products.service";
+import { ProductsService } from "@services/products/products.service";
 
 describe("HomePageComponent", () => {
   let component: HomePageComponent;

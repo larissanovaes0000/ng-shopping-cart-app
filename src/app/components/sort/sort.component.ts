@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { ProductsService } from "@services/products-service/products.service";
+import { ProductsService } from "@services/products/products.service";
 import { ViewportService } from "@services/viewport/viewport.service";
 
 export type SortOrder = "asc" | "desc";
