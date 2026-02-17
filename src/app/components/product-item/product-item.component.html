@@ -6,26 +6,16 @@
     [attr.title]="product.name"
     role="img"
   ></div>
-
   <div class="content">
     <h3 class="name" title="{{ product.name }}">{{ product.name }}</h3>
     <p class="description" title="{{ product.description }}">
       {{ product.description }}
     </p>
-
     <span class="price">R$ {{ product.price | number: "1.2-2" }}</span>
-
-    <!-- NOT IN CART -->
-    <button
-      *ngIf="quantity === 0"
-      class="button-add-to-cart"
-      (click)="addToCart()"
-    >
+    <button *ngIf="quantity === 0"  class="button-add-to-cart"(click)="addToCart()">
       <span class="icon">+</span>
       Add to cart
     </button>
-
-    <!-- IN CART -->
     <div *ngIf="quantity > 0" class="quantity-control">
       <button class="button-control" (click)="decrease()">−</button>
       <span class="quantity-number">{{ quantity }}</span>

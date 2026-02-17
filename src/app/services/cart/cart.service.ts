@@ -11,8 +11,7 @@ export class CartService {
   cartSubject = new BehaviorSubject<CartItem[]>(this.loadFromStorage());
 
   constructor() {
-    console.log("CartService instantiated");
-  }
+}
 
   private get snapshot(): CartItem[] {
     return this.cartSubject.value;
