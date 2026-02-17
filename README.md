@@ -34,6 +34,14 @@ The project intentionally uses Angular 9, as required by the challenge.
 
 ---
 
+## Figma
+
+Design reference:
+
+https://www.figma.com/design/QGFswDNwqstQuFSk7DabB8/Vendas?node-id=391-141&t=CrvfmsOhWnkpKNQK-0
+
+---
+
 ## Architecture Overview
 
 - Component-based architecture with clear separation of concerns
