@@ -18,14 +18,17 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {}
 
   form = this.fb.group({
-    name: ["", Validators.required],
-    description: ["", Validators.required],
-    price: [null, [Validators.required, Validators.min(0)]],
+    name: ["", [Validators.required, Validators.maxLength(30)]],
+    description: ["", [Validators.required, Validators.maxLength(100)]],
+    price: [null, [Validators.required, Validators.min(1)]],
     imgUrl: ["", Validators.required],
   });
 
   onSubmit() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    return;
+  }
 
     this.productsService.createProduct(this.form.value).subscribe({
       next: () => {
@@ -39,4 +42,9 @@ export class ProductFormComponent implements OnInit {
   onReset() {
     this.form.reset();
   }
+
+  hasError(controlName: string, error: string) {
+  const control = this.form.get(controlName);
+  return control?.touched && control?.hasError(error);
+}
 }

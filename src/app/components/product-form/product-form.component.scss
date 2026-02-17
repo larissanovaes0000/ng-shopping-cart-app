@@ -9,7 +9,7 @@
   gap: 20px;
 
   @media screen and (max-width: 767px) {
-    padding: 0
+    padding: 0;
   }
 }
 
@@ -41,6 +41,16 @@
       outline: none;
       border-color: $blue;
     }
+
+    &.invalid {
+      border-color: $danger;
+    }
+  }
+
+  .error {
+    color: $danger;
+    font-size: 12px;
+    margin-top: 4px;
   }
 }
 
@@ -72,9 +82,4 @@
   font-size: $text-md;
   cursor: pointer;
   border: 1px solid $gray-200;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
 }

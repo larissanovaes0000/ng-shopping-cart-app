@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { CartService } from "@services/cart/cart.service";
+import { ASSETS } from "app/core/constants/assets.constants";
 import { map } from "rxjs/internal/operators/map";
 
 @Component({
@@ -14,6 +15,9 @@ export class CartComponent {
   totalAmount$ = this.cartService.getTotalAmount();
   emptyCart$ = this.cartItems$.pipe(map((items: any[]) => items.length === 0));
 
+  cartIcon = ASSETS.CART_ICON;
+  downIcon = ASSETS.DOWN_ICON
+
   constructor(private cartService: CartService) {}
 
   clearCart() {
@@ -22,5 +26,9 @@ export class CartComponent {
 
   handleCartInformation() {
     this.openCartInformation = !this.openCartInformation;
+  }
+
+  removeProduct(productId: number) {
+    this.cartService.removeProduct(productId);
   }
 }

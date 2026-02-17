@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CartService } from "@services/cart/cart.service";
+import { ASSETS } from "app/core/constants/assets.constants";
 import { Product } from "app/core/interfaces/product.interface";
 import { Subject } from "rxjs/internal/Subject";
 import { takeUntil } from "rxjs/operators";
@@ -12,11 +13,17 @@ import { takeUntil } from "rxjs/operators";
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
 
+  placeholderImage = ASSETS.PRODUCT_PLACEHOLDER;
+
   private destroy$ = new Subject<void>();
 
   quantity = 0;
 
   constructor(private cartService: CartService) {}
+
+  onImageError() {
+    this.product.imgUrl = this.placeholderImage;
+  }
 
   ngOnInit(): void {
     this.updateProductsState();

@@ -11,19 +11,22 @@ import { CoreModule } from "./core/core.module";
 import { CartService } from "./services/cart/cart.service";
 import { HomePageComponent } from "./views/home/home.component";
 import { ViewportService } from "@services/viewport/viewport.service";
+import { AppRoutingModule } from "./app-routing.module";
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
     AppComponent, 
-    HomePageComponent
+    HomePageComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule, 
     HttpClientModule, 
     ComponentsModule, 
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: "pt-BR" },
