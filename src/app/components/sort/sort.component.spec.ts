@@ -29,6 +29,18 @@ describe('SortComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('starts with sort options hidden', () => {
+    expect(component.showSortOptions).toBe(false);
+  });
+
+  it('toggles sort options visibility', () => {
+    component.toggleSortOptions();
+    expect(component.showSortOptions).toBe(true);
+
+    component.toggleSortOptions();
+    expect(component.showSortOptions).toBe(false);
+  });
+
   it('sorts low to high', () => {
     component.showSortOptions = true;
     component.sortLowToHigh();

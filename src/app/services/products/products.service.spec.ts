@@ -135,4 +135,17 @@ describe("ProductsService", () => {
     expect(reloadReq.request.method).toBe("GET");
     reloadReq.flush(products);
   });
+
+  it("handles loadProducts error path", () => {
+    spyOn(console, "error");
+
+    service.loadProducts();
+
+    const requests = httpMock.match(API_URL);
+    expect(requests.length).toBe(2);
+    requests[0].flush([]);
+    requests[1].flush("failure", { status: 500, statusText: "Server Error" });
+
+    expect(console.error).toHaveBeenCalled();
+  });
 });

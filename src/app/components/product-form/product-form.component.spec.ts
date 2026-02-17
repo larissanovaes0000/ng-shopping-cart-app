@@ -87,4 +87,21 @@ describe("ProductFormComponent", () => {
     component.onReset();
     expect(component.form.get("name")?.value).toBeNull();
   });
+
+  it("returns false in hasError when untouched", () => {
+    component.form.get("name")?.setValue("");
+    expect(component.hasError("name", "required")).toBeFalsy();
+  });
+
+  it("returns true in hasError when touched and invalid", () => {
+    const nameControl = component.form.get("name");
+    nameControl?.setValue("");
+    nameControl?.markAsTouched();
+
+    expect(component.hasError("name", "required")).toBeTruthy();
+  });
+
+  it("runs ngOnInit without side effects", () => {
+    expect(() => component.ngOnInit()).not.toThrow();
+  });
 });
