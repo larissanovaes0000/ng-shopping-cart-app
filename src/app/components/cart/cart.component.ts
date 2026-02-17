@@ -1,23 +1,34 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CartService } from '../../services/cart.service';
+import { Component } from "@angular/core";
+import { CartService } from "@services/cart/cart.service";
+import { ASSETS } from "app/core/constants/assets.constants";
+import { map } from "rxjs/internal/operators/map";
 
 @Component({
-    selector: 'cart',
-    templateUrl: 'cart.component.html',
-    styleUrls: ['cart.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent {
-    items$: Observable<any[]>;
-    total$: Observable<number>;
+  openCartInformation = false;
+  cartItems$ = this.cartService.getCartItems();
+  totalQuantity$ = this.cartService.getTotalQuantity();
+  totalAmount$ = this.cartService.getTotalAmount();
+  emptyCart$ = this.cartItems$.pipe(map((items: any[]) => items.length === 0));
 
-    constructor(
-        public cart: CartService,
-    ) {
-        cart.getStoredCartItems();
+  cartIcon = ASSETS.CART_ICON;
+  downIcon = ASSETS.DOWN_ICON
 
-        this.items$ = cart.getCartUpdates();
-        this.total$ = cart.getTotalUpdates();
-    }
+  constructor(private cartService: CartService) {}
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
+
+  handleCartInformation() {
+    this.openCartInformation = !this.openCartInformation;
+  }
+
+  removeProduct(productId: number) {
+    this.cartService.removeProduct(productId);
+  }
 }

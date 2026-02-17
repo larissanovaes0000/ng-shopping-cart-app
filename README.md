@@ -69,11 +69,17 @@ New features in the app are welcome and appreciated.
 
 # Setup
 
-1. `npm install` to get dependencies
-2. Start app with `npm run start` and point webbrowser to `http://localhost:4200/`
-3. Use `npm run test:watch` to see tests failing
-4. Fix issues so that tests pass
-5. Solve all issues mentioned here
-6. Submit your code on Devskiller platform to see if task is completed
+1. Run `npm install` to install dependencies.
+2. Run `npm start` to start the full local environment:
+   * Angular app on `http://localhost:4200`
+   * JSON Server API on `http://localhost:3000`
+3. If you want to start services separately:
+   * `npm run start:web` (Angular only)
+   * `npm run start:api` (JSON Server only)
+4. Run tests:
+   * `npm run test` (single run)
+   * `npm run test:watch` (watch mode)
 
-# Good Luck!
+6. If ports are busy (`3000` or `4200`), stop previous processes and run `npm start` again.
+
+

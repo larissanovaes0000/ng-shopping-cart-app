@@ -8,6 +8,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-coverage-istanbul-reporter'),
       require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
@@ -17,6 +18,11 @@ module.exports = function (config) {
     junitReporter: {
       useBrowserName: false,
       outputFile: 'test-results.xml'
+    },
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, './coverage/devskiller-angular-shopping-cart'),
+      reports: ['html', 'lcovonly', 'text-summary'],
+      fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'junit'],
     port: 9876,

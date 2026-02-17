@@ -1,0 +1,61 @@
+@use "styles/index" as *;
+
+.home {
+  padding: 0 24px;
+  background-color: $background-light;
+
+  @media screen and (max-width: 767px) {
+    padding: 75px 16px 16px 16px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0 48px 0;
+
+    @media screen and (max-width: 767px) {
+      flex-wrap: wrap;
+    }
+
+    .main-title {
+      color: $orange;
+      font-weight: $font-bold;
+      font-size: $title-lg;
+
+      @media screen and (max-width: 767px) {
+        font-size: $title-md;
+      }
+    }
+  }
+
+  .product-form {
+    @media screen and (max-width: 767px) {
+      margin-bottom: 48px;
+    }
+  }
+
+  .products-list {
+    background: $white;
+    padding: 48px;
+    border-radius: 4px;
+
+    @media screen and (max-width: 767px) {
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .products-grid {
+      display: grid;
+      gap: 24px;
+      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+      @media screen and (max-width: 767px) {
+        app-product-item {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

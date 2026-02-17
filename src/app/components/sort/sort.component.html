@@ -1,0 +1,16 @@
+<div class="sort-container">
+  <button class="sort-button" (click)="toggleSortOptions()">
+    <span>Sort by price</span>
+    <i class="bi bi-chevron-down"></i>
+  </button>
+  <div class="sort-options" *ngIf="showSortOptions">
+    <ul>
+      <li class="sort-option mb-2" (click)="sortLowToHigh()">
+        <a>Low to high</a>
+      </li>
+      <li class="sort-option" (click)="sortHighToLow()">
+        <a>High to low</a>
+      </li>
+    </ul>
+  </div>
+</div>

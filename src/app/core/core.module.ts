@@ -1,11 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { ForProductDirective } from "./directives/for-product.directive";
-
 @NgModule({
-  declarations: [ForProductDirective],
+  declarations: [],
   imports: [BrowserModule],
-  exports: [ForProductDirective],
+  exports: [],
 })
 export class CoreModule {}

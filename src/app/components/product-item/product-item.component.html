@@ -1,0 +1,32 @@
+<div class="product-card">
+  <div
+    class="image-placeholder"
+    [style.backgroundImage]="'url(' + product.imgUrl + ')'"
+    [attr.aria-label]="product.name"
+    [attr.title]="product.name"
+    role="img"
+    (error)="onImageError()"
+  >
+    <img [src]="product.imgUrl" (error)="onImageError()" hidden />
+  </div>
+  <div class="content">
+    <h3 class="name" title="{{ product.name }}">{{ product.name }}</h3>
+    <p class="description" title="{{ product.description }}">
+      {{ product.description }}
+    </p>
+    <span class="price">R$ {{ product.price | number: "1.2-2" }}</span>
+    <button
+      *ngIf="quantity === 0"
+      class="button-add-to-cart"
+      (click)="addToCart()"
+    >
+      <span class="icon">+</span>
+      Add to cart
+    </button>
+    <div *ngIf="quantity > 0" class="quantity-control">
+      <button class="button-control" (click)="decrease()">−</button>
+      <span class="quantity-number">{{ quantity }}</span>
+      <button class="button-control" (click)="increase()">+</button>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ export interface CartItem {
   amount: number;
   product: Product;
   subtotal: number;
+  quantity?: number;
 }
 
 interface Product {
