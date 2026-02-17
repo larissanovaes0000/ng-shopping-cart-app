@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { registerLocaleData } from "@angular/common";
 import localePt from "@angular/common/locales/pt";
 import { AlertService } from "@services/alert/alert.service";
@@ -14,6 +14,7 @@ import { ViewportService } from "@services/viewport/viewport.service";
 import { AppRoutingModule } from "./app-routing.module";
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { NgxMaskModule } from "ngx-mask";
+import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
 
 registerLocaleData(localePt);
 
@@ -35,7 +36,12 @@ registerLocaleData(localePt);
     ProductsService,
     CartService,
     AlertService,
-    ViewportService
+    ViewportService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

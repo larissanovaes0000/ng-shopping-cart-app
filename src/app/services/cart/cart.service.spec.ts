@@ -1,117 +1,110 @@
-import { CartDataService } from '../cart-data-service/cart-data.service';
-import { CartItem } from '../../core/interfaces/cart-item.interface';
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { CartService } from './cart.service';
-import { Subject } from 'rxjs';
+import { CartService } from "./cart.service";
 
-import { buffer } from 'rxjs/operators';
+describe("CartService", () => {
+  const productA = { id: 123, price: 100, name: "Motorola" };
+  const productB = { id: 124, price: 150, name: "Fancy Car" };
 
-describe('CartService', () => {
-    let cart: CartService;
-    let dataservice: CartDataService;
-    const product_A = { id: 123, price: 100, name: 'Motorola' };
-    const product_B = { id: 124, price: 150, name: 'Fancy Car' };
-    const fakeObservable = { subscribe: () => { } };
+  let service: CartService;
 
-    beforeEach(() => {
-        dataservice = jasmine.createSpyObj('data service', {
-            persist: fakeObservable,
-            remove: fakeObservable,
-            fetchAll: fakeObservable,
-            fetchOne: fakeObservable,
-        });
+  beforeEach(() => {
+    localStorage.clear();
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(CartService);
+  });
 
-        TestBed.configureTestingModule({
-            providers: [
-                { provide: CartDataService, useValue: dataservice },
-                CartService
-            ]
-        });
-    });
+  afterEach(() => {
+    localStorage.clear();
+  });
 
-    beforeEach(inject([CartService], (service: CartService) => {
-        cart = service;
-    }));
+  it("should be created", () => {
+    expect(service).toBeTruthy();
+  });
 
-    it('should add product to cart', () => {
-        cart.addProduct(product_A)
-        expect(cart.getItems().length).toEqual(1);
-        cart.addProduct(product_B);
-        expect(cart.getItems().length).toEqual(2);
-    })
+  it("adds product and aggregates same product quantity", () => {
+    service.addProduct(productA);
+    service.addProduct(productA);
 
-    it('should remove product from cart', () => {
-        cart.addProduct(product_A);
-        cart.addProduct(product_B);
-        expect(cart.getItems().length).toEqual(2);
-        cart.removeProduct(product_A);
-        expect(cart.getItems().length).toEqual(1);
-        cart.removeProduct(product_B);
-        expect(cart.getItems().length).toEqual(0);
-    })
+    const items = service.cartSubject.value;
+    expect(items.length).toBe(1);
+    expect(items[0].quantity).toBe(2);
+  });
 
-    it('aggregate same products as one item, tracks amount', () => {
-        cart.addProduct(product_A);
-        cart.addProduct(product_B);
-        expect(cart.getItem(product_A.id).amount).toEqual(1);
-        expect(cart.getItem(product_B.id).amount).toEqual(1);
-        cart.addProduct(product_A);
-        expect(cart.getItem(product_A.id).amount).toEqual(2);
-        cart.addProduct(product_A);
-        expect(cart.getItem(product_A.id).amount).toEqual(3);
+  it("removes product by id", () => {
+    service.addProduct(productA);
+    service.addProduct(productB);
 
-    })
+    service.removeProduct(productA.id);
 
-    it('calculates subtotal price for each item based on that item amount', () => {
-        cart.addProduct(product_A);
-        cart.addProduct(product_A);
-        expect(cart.getItem(product_A.id).subtotal).toEqual(200);
-        cart.addProduct(product_A);
-        expect(cart.getItem(product_A.id).subtotal).toEqual(300);
-        cart.removeProduct(product_A);
-        expect(cart.getItem(product_A.id).subtotal).toEqual(200);
-    })
+    const items = service.cartSubject.value;
+    expect(items.length).toBe(1);
+    expect(items[0].product.id).toBe(productB.id);
+  });
 
-    it('calculates total price of items in cart', () => {
-        cart.addProduct(product_A);
-        cart.addProduct(product_A);
-        cart.addProduct(product_B);
-        expect(cart.getTotal()).toEqual(350);
-        cart.addProduct(product_A);
-        cart.addProduct(product_B);
-        expect(cart.getTotal()).toEqual(600);
-        cart.removeProduct(product_B);
-        expect(cart.getTotal()).toEqual(450);
-    })
+  it("updates quantity and removes item when quantity is zero", () => {
+    service.addProduct(productA);
+    service.updateQuantity(productA.id, 3);
+    expect(service.cartSubject.value[0].quantity).toBe(3);
 
-    it('notifies subscribers on cart item changes', () => {
-        const notifications = new Subject();
-        let update;
+    service.updateQuantity(productA.id, 0);
+    expect(service.cartSubject.value.length).toBe(0);
+  });
 
-        cart.getItemUpdates(product_A.id)
-            .pipe(buffer(notifications))
-            .subscribe(u => {
-                update = u.pop();
-            });
+  it("calculates total quantity", () => {
+    let total = 0;
+    service.getTotalQuantity().subscribe((value) => (total = value));
 
-        cart.addProduct(product_A);
-        notifications.next();
-        expect(update).not.toBeUndefined();
+    service.addProduct(productA);
+    service.addProduct(productA);
+    service.addProduct(productB);
 
-    });
+    expect(total).toBe(3);
+  });
 
-    it('notifies with most recent cart state imediately on subscription', () => {
-        let update = { amount: 0 };
+  it("calculates total amount", () => {
+    let total = 0;
+    service.getTotalAmount().subscribe((value) => (total = value));
 
-        cart.getItemUpdates(product_A.id)
-            .subscribe(u => {
-                update = u;
-            });
+    service.addProduct(productA);
+    service.addProduct(productA);
+    service.addProduct(productB);
 
-        cart.addProduct(product_A);
-        cart.addProduct(product_A);
+    expect(total).toBe(350);
+  });
 
-        expect(update.amount).toEqual(2);
-    });
+  it("persists items in localStorage", () => {
+    service.addProduct(productA);
+
+    const stored = JSON.parse(localStorage.getItem("app_cart") || "[]");
+    expect(stored.length).toBe(1);
+    expect(stored[0].product.id).toBe(productA.id);
+  });
+
+  it("loads items from localStorage", () => {
+    localStorage.setItem(
+      "app_cart",
+      JSON.stringify([{ product: productA, quantity: 2, amount: 0, subtotal: 0 }]),
+    );
+
+    const reloaded = new CartService();
+    expect(reloaded.cartSubject.value.length).toBe(1);
+    expect(reloaded.cartSubject.value[0].quantity).toBe(2);
+  });
+
+  it("clears cart on clearCart", () => {
+    service.addProduct(productA);
+    service.clearCart();
+
+    expect(service.cartSubject.value).toEqual([]);
+    expect(localStorage.getItem("app_cart")).toBeNull();
+  });
+
+  it("clears cart on logout", () => {
+    service.addProduct(productA);
+    service.logout();
+
+    expect(service.cartSubject.value).toEqual([]);
+    expect(localStorage.getItem("app_cart")).toBeNull();
+  });
 });
