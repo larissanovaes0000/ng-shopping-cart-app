@@ -7,13 +7,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProductItemComponent } from "./product-item/product-item.component";
 import { AlertComponent } from './alert/alert.component';
 import { SortComponent } from './sort/sort.component';
+import { CartComponent } from './cart/cart.component';
 
 const components = [
   ProductFormComponent,
   NavbarComponent,
   ProductItemComponent,
   AlertComponent,
-  SortComponent
+  SortComponent,
+  CartComponent
 ];
 
 @NgModule({

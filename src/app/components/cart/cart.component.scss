@@ -1,0 +1,129 @@
+@import "../../../styles/_colors.scss";
+@import "../../../styles/_fonts.scss";
+
+.cart {
+  display: flex;
+  align-items: center;
+
+  .cart-quantity {
+    position: relative;
+
+    .cart-icon {
+      width: 28px;
+    }
+
+    .items-number {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: $orange;
+      padding: 3px 6px;
+      border-radius: 50px;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      line-height: 1;
+      font-size: 12px;
+      font-weight: bold;
+      color: $white;
+    }
+  }
+
+  .cart-count {
+    color: $white;
+    font-size: $text-lg;
+    font-weight: $font-semibold;
+    margin: 0 10px;
+  }
+
+  .cart-items-list {
+    .cart-down-arrow {
+      width: 16px;
+    }
+
+    .cart-card {
+      width: 100%;
+      max-width: 480px;
+      background: $white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 8px 24px $shadow-soft;
+      position: absolute;
+      right: 12px;
+      top: 60px;
+      z-index: 9;
+
+      .cart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        h2 {
+          font-size: $title-md;
+          font-weight: $font-semibold;
+          color: $gray-900;
+        }
+      }
+
+      .clear-all {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        color: $orange-accent;
+        font-size: $text-sm;
+        font-weight: $font-medium;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:disabled {
+          color: $gray-300;
+          cursor: not-allowed;
+          text-decoration: none;
+        }
+      }
+
+      .cart-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .remove-item {
+        background: none;
+        border: none;
+        color: $danger;
+        font-size: $text-md;
+        cursor: pointer;
+      }
+
+      .item-name {
+        font-size: $text-md;
+        color: $black;
+      }
+
+      .item-price {
+        font-size: $text-md;
+        font-weight: $font-medium;
+        color: $black;
+      }
+
+      @media screen and (max-width: 767px) {
+        max-width: calc(100% - 24px);
+        right: 12px;
+      }
+    }
+  }
+}
