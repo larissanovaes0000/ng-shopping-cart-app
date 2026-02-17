@@ -6,7 +6,8 @@
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
     "build": "ng build",
     "test:watch": "ng test --karma-config karma.conf.js --watch",
-    "test": "ng test --karma-config karma.conf.js"
+    "test": "ng test --karma-config karma.conf.js",
+    "mock:api": "json-server --watch db.json --port 3000"
   },
   "dependencies": {
     "@angular/animations": "~9.1.3",
@@ -38,6 +39,7 @@
     "codelyzer": "^5.2.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.2",
+    "json-server": "^1.0.0-beta.6",
     "karma": "~5.0.2",
     "karma-chrome-launcher": "~3.1.0",
     "karma-cli": "~2.0.0",

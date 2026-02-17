@@ -11,28 +11,27 @@ import { ProductsService } from "@services/products-service/products.service";
 export class ProductFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
-    private productService: ProductsService,
+    private productsService: ProductsService,
     private alertService: AlertService,
   ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   form = this.fb.group({
     name: ["", Validators.required],
-    description: [""],
+    description: ["", Validators.required],
     price: [null, [Validators.required, Validators.min(0)]],
-    imgUrl: [""],
+    imgUrl: ["", Validators.required],
   });
 
   onSubmit() {
     if (this.form.invalid) return;
 
-    console.log("Product:", this.form.value);
-
-    this.productService.createProduct(this.form.value).subscribe({
-      next: () => this.alertService.success("Produto criado com sucesso!"),
+    this.productsService.createProduct(this.form.value).subscribe({
+      next: () => {
+        this.alertService.success("Produto criado com sucesso!");
+        this.form.reset();
+      },
       error: () => this.alertService.error("Erro ao criar produto"),
     });
   }

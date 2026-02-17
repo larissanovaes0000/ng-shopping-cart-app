@@ -4,6 +4,8 @@ import { fromEvent, merge, Observable, of } from "rxjs";
 import { Product } from "../../core/interfaces/product.interface";
 import { ProductsService } from "@services/products-service/products.service";
 import { map, startWith } from "rxjs/operators";
+import { HttpClient } from "@angular/common/http";
+import { ViewportService } from "@services/viewport/viewport.service";
 
 @Component({
   selector: "home-page",
@@ -11,51 +13,19 @@ import { map, startWith } from "rxjs/operators";
   styleUrls: ["home.component.scss"],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class HomePageComponent implements OnInit {
-  products$: Observable<Product[]>;
+export class HomePageComponent{
+  products$ = this.productsService.products$;
+
   showSortOptions = false;
 
-  isMobile$ = merge(of(window.innerWidth), fromEvent(window, "resize")).pipe(
-    map(() => window.innerWidth <= 767),
-  );
+  isMobile$ = this.viewportService.isMobile$;
 
-  constructor(private productsService: ProductsService) {}
-
-  ngOnInit() {
-    this.getProductsList();
-  }
-
-  getProductsList() {
-    this.productsService.getProducts().subscribe((data: Product[]) => {
-      this.products$ = of(data);
-    });
-  }
+  constructor(
+    private productsService: ProductsService,
+    private viewportService: ViewportService
+  ) {}
 
   toggleSortOptions() {
     this.showSortOptions = !this.showSortOptions;
-  }
-
-  onSortChange(order: 'asc' | 'desc') {
-    if (order === 'asc') {
-      this.products$ = this.products$.pipe(
-        map((products) => [...products].sort((a, b) => a.price - b.price))
-      );
-    } else {
-      this.products$ = this.products$.pipe(
-        map((products) => [...products].sort((a, b) => b.price - a.price))
-      );
-    }
-  }
-
-  sortLowToHight() {
-    this.products$ = this.products$.pipe(
-      map((products) => [...products].sort((a, b) => a.price - b.price)),
-    );
-  }
-
-  sortHighToLow() {
-    this.products$ = this.products$.pipe(
-      map((products) => [...products].sort((a, b) => b.price - a.price)),
-    );
   }
 }

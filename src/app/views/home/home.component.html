@@ -1,18 +1,22 @@
 <div class="home">
   <div class="header">
     <h1 class="main-title">Welcome to Aubay´s shopping</h1>
-    <app-sort *ngIf="!(isMobile$ | async)" (sortChange)="onSortChange($event)"></app-sort>
+    <app-sort *ngIf="!(isMobile$ | async)"></app-sort>
   </div>
 
   <div class="d-flex flex-wrap">
+    <!-- Product Form -->
     <div class="col-xs-12 col-sm-12 col-md-4 p-0 product-form">
       <product-form></product-form>
     </div>
 
-     <app-sort *ngIf="(isMobile$ | async)" (sortChange)="onSortChange($event)"></app-sort>
+    <app-sort *ngIf="(isMobile$ | async)"></app-sort>
 
+    <!-- Products List -->
     <div class="col-xs-12 col-sm-12 col-md-8 products-list">
-      <products-list [products]="products$ | async"></products-list>
+      <div class="products-grid">
+        <app-product-item *ngFor="let product of products$ | async"   [product]="product" ></app-product-item>
+      </div>
     </div>
   </div>
 </div>

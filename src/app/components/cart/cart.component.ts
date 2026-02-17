@@ -15,10 +15,10 @@ export class CartComponent {
     constructor(
         public cart: CartService,
     ) {
-        cart.getStoredCartItems();
+        cart.getCartItems();
 
-        this.items$ = cart.getCartUpdates();
-        this.total$ = cart.getTotalUpdates();
+        // this.items$ = cart.getCartUpdates();
+        // this.total$ = cart.getTotalUpdates();
     }
 }
 

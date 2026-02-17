@@ -26,12 +26,12 @@ export class CartItemControlComponent implements OnInit {
   constructor(public cart: CartService) {}
 
   ngOnInit() {
-    this.item = this.cart.getItem(this.product.id);
-    this.cartItem$ = this.cart
-      .getItemUpdates(this.product.id)
-      .subscribe((item) => {
-        this.item = item;
-      });
+    // this.item = this.cart.getItem(this.product.id);
+    // this.cartItem$ = this.cart
+    //   .getItemUpdates(this.product.id)
+    //   .subscribe((item) => {
+    //     this.item = item;
+    //   });
   }
 }
 

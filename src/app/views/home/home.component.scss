@@ -45,5 +45,18 @@
       padding: 24px;
       margin-top: 24px;
     }
+
+    .products-grid {
+      display: grid;
+      gap: 24px;
+      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+      @media screen and (max-width: 767px) {
+        app-product-item {
+          width: 100%;
+        }
+      }
+    }
   }
 }
