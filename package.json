@@ -1,5 +1,5 @@
 {
-  "name": "angular-shopping-cart",
+  "name": "ng-shopping-cart-app",
   "private": true,
   "engines": {
     "node": "14.x",
@@ -7,10 +7,15 @@
   },
   "scripts": {
     "ng": "ng",
+    "postinstall": "node scripts/postinstall-fixes.js",
     "start": "concurrently -k \"npm run start:web\" \"npm run start:api\"",
     "start:web": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng serve",
     "start:api": "json-server --watch db.json --port 3000",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build",
+    "build:gh-pages": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng build --configuration production --base-href /ng-shopping-cart-app/",
+    "postbuild:gh-pages": "node -e \"const fs=require('fs');const p='dist/ng-shopping-cart-app';fs.copyFileSync(p + '/index.html', p + '/404.html');\"",
+    "deploy:gh-pages": "npx angular-cli-ghpages --dir=dist/ng-shopping-cart-app",
+    "publish:gh-pages": "npm run build:gh-pages && npm run postbuild:gh-pages && npm run deploy:gh-pages",
     "test": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng test --karma-config karma.conf.js",
     "test:watch": "cross-env NODE_OPTIONS=--openssl-legacy-provider ng test --karma-config karma.conf.js --watch",
     "dev": "npm run start"
@@ -36,6 +41,7 @@
     "@angular/cli": "~9.1.3",
     "@angular/compiler-cli": "~9.1.3",
     "@angular/language-service": "~9.1.3",
+    "angular-cli-ghpages": "^2.0.3",
     "@types/jasmine": "~3.5.10",
     "@types/node": "^13.13.4",
     "codelyzer": "^5.2.2",

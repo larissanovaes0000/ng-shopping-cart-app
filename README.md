@@ -132,6 +132,21 @@ npm run test:watch
 npm run build
 ```
 
+### Deploy to GitHub Pages
+
+Install dependencies first (includes `angular-cli-ghpages`), then publish:
+
+```bash
+npm run publish:gh-pages
+```
+
+Notes:
+
+- The script currently uses `--base-href /ng-shopping-cart-app/`.
+- If your repository name is different, update `build:gh-pages` in `package.json`.
+- A `404.html` file is generated from `index.html` to support Angular routes on GitHub Pages.
+- In production (`environment.prod.ts`), the app runs without a backend API and uses `assets/products.json` + `localStorage`.
+
 ---
 
 ## OpenSSL Workaround (Node 17+)
