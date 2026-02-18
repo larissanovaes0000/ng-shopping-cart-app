@@ -2,6 +2,7 @@
   *ngIf="alert$ | async as alert"
   class="alert alert-{{ alert.type }} alert-dismissible fade show"
   role="alert"
+  aria-live="assertive"
 >
   {{ alert.message }}
 
@@ -11,8 +12,4 @@
     aria-label="Close"
     (click)="close()"
   ></button>
-
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"  (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
 </div>

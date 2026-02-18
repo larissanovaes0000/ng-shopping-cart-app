@@ -29,10 +29,15 @@
 
   .sort-option {
     transition: 0.4s;
-    cursor: pointer;
 
-    &:hover {
-      text-decoration: underline;
+    button {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

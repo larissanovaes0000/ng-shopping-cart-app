@@ -1,15 +1,22 @@
 <div class="sort-container">
-  <button class="sort-button" (click)="toggleSortOptions()">
+  <button
+    type="button"
+    class="sort-button"
+    (click)="toggleSortOptions()"
+    [attr.aria-expanded]="showSortOptions"
+    aria-haspopup="listbox"
+    aria-controls="sort-options-list"
+  >
     <span>Sort by price</span>
-    <i class="bi bi-chevron-down"></i>
+    <i class="bi bi-chevron-down" aria-hidden="true"></i>
   </button>
-  <div class="sort-options" *ngIf="showSortOptions">
-    <ul>
-      <li class="sort-option mb-2" (click)="sortLowToHigh()">
-        <a>Low to high</a>
+  <div id="sort-options-list" class="sort-options" *ngIf="showSortOptions">
+    <ul role="listbox" aria-label="Sort products by price">
+      <li class="sort-option mb-2" role="option">
+        <button type="button" (click)="sortLowToHigh()">Low to high</button>
       </li>
-      <li class="sort-option" (click)="sortHighToLow()">
-        <a>High to low</a>
+      <li class="sort-option" role="option">
+        <button type="button" (click)="sortHighToLow()">High to low</button>
       </li>
     </ul>
   </div>

@@ -8,11 +8,13 @@
       type="text"
       formControlName="name"
       maxlength="30"
+      [attr.aria-invalid]="hasError('name', 'required') || hasError('name', 'maxlength')"
+      aria-describedby="name-error"
       [class.invalid]="
         hasError('name', 'required') || hasError('name', 'maxlength')
       "
     />
-    <small class="error" *ngIf="hasError('name', 'required')">
+    <small id="name-error" class="error" *ngIf="hasError('name', 'required')">
       Name is required
     </small>
   </div>
@@ -24,12 +26,16 @@
       type="text"
       formControlName="description"
       maxlength="100"
+      [attr.aria-invalid]="
+        hasError('description', 'required') || hasError('description', 'maxlength')
+      "
+      aria-describedby="description-error"
       [class.invalid]="
         hasError('description', 'required') ||
         hasError('description', 'maxlength')
       "
     />
-    <small class="error" *ngIf="hasError('description', 'required')">
+    <small id="description-error" class="error" *ngIf="hasError('description', 'required')">
       Description is required
     </small>
   </div>
@@ -44,15 +50,18 @@
       thousandSeparator="."
       decimalMarker=","
       prefix="R$ "
+      inputmode="decimal"
+      [attr.aria-invalid]="hasError('price', 'required') || hasError('price', 'min')"
+      aria-describedby="price-required-error price-min-error"
       [class.invalid]="
         hasError('price', 'required') || hasError('price', 'min')
       "
     />
-    <small class="error" *ngIf="hasError('price', 'required')">
+    <small id="price-required-error" class="error" *ngIf="hasError('price', 'required')">
       Price is required
     </small>
 
-    <small class="error" *ngIf="hasError('price', 'min')">
+    <small id="price-min-error" class="error" *ngIf="hasError('price', 'min')">
       Price must be greater than 0
     </small>
   </div>
@@ -63,9 +72,11 @@
       id="imgUrl"
       type="text"
       formControlName="imgUrl"
+      [attr.aria-invalid]="hasError('imgUrl', 'required')"
+      aria-describedby="imgurl-error"
       [class.invalid]="hasError('imgUrl', 'required')"
     />
-    <small class="error" *ngIf="hasError('imgUrl', 'required')">
+    <small id="imgurl-error" class="error" *ngIf="hasError('imgUrl', 'required')">
       Image URL is required
     </small>
   </div>
