@@ -48,8 +48,8 @@ describe("ProductFormComponent", () => {
     productsService.createProduct.and.returnValue(of({ id: 1 } as any));
 
     component.form.patchValue({
-      name: "Produto",
-      description: "Descricao",
+      name: "Product",
+      description: "Description",
       price: "R$ 1.234,56",
       imgUrl: "https://img",
     });
@@ -58,8 +58,8 @@ describe("ProductFormComponent", () => {
 
     expect(productsService.createProduct).toHaveBeenCalledWith(
       jasmine.objectContaining({
-        name: "Produto",
-        description: "Descricao",
+        name: "Product",
+        description: "Description",
         imgUrl: "https://img",
         price: 1234.56,
       }),
@@ -71,19 +71,21 @@ describe("ProductFormComponent", () => {
     productsService.createProduct.and.returnValue(throwError("err"));
 
     component.form.patchValue({
-      name: "Produto",
-      description: "Descricao",
+      name: "Product",
+      description: "Description",
       price: "R$ 10,00",
       imgUrl: "https://img",
     });
 
     component.onSubmit();
 
-    expect(alertService.error).toHaveBeenCalledWith("Erro ao criar produto");
+    expect(alertService.error).toHaveBeenCalledWith(
+      "Something went wrong while creating the product",
+    );
   });
 
   it("resets form", () => {
-    component.form.patchValue({ name: "Produto" });
+    component.form.patchValue({ name: "Product" });
     component.onReset();
     expect(component.form.get("name")?.value).toBeNull();
   });

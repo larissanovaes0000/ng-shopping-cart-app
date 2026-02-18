@@ -45,7 +45,7 @@
         <button
           type="button"
           class="remove-item"
-          (click)="removeProduct(item.product.id)"
+          (click)="$event.stopPropagation(); removeProduct(item.product.id)"
           [attr.aria-label]="'Remove ' + item.product.name + ' from cart'"
         >
           <i class="bi bi-trash3"></i>

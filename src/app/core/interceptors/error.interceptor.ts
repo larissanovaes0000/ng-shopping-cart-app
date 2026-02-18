@@ -32,17 +32,17 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     if (error.status === 0) {
-      return "Falha de conexão com o servidor.";
+      return "Failed to connect to the server.";
     }
 
     if (error.status >= 500) {
-      return "Erro interno do servidor. Tente novamente mais tarde.";
+      return "Internal server error. Please try again later.";
     }
 
     if (error.status >= 400) {
-      return "Não foi possível processar a solicitação.";
+      return "Unable to process the request.";
     }
 
-    return "Ocorreu um erro inesperado.";
+    return "An unexpected error occurred.";
   }
 }
