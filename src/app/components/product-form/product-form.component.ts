@@ -64,7 +64,32 @@ export class ProductFormComponent implements OnInit {
       return value;
     }
 
-    const digitsOnly = String(value).replace(/\D/g, "");
-    return Number(digitsOnly) / 100;
+    const normalized = String(value).replace(/[^\d.,]/g, "");
+    const commaIndex = normalized.lastIndexOf(",");
+    const dotIndex = normalized.lastIndexOf(".");
+
+    let decimalSeparator = "";
+
+    if (commaIndex > -1 && dotIndex > -1) {
+      decimalSeparator = commaIndex > dotIndex ? "," : ".";
+    } else if (commaIndex > -1) {
+      const digitsAfterComma = normalized.length - commaIndex - 1;
+      decimalSeparator = digitsAfterComma <= 2 ? "," : "";
+    } else if (dotIndex > -1) {
+      const digitsAfterDot = normalized.length - dotIndex - 1;
+      const dotCount = (normalized.match(/\./g) || []).length;
+      decimalSeparator = dotCount === 1 && digitsAfterDot <= 2 ? "." : "";
+    }
+
+    if (!decimalSeparator) {
+      return Number(normalized.replace(/[.,]/g, ""));
+    }
+
+    const thousandSeparator = decimalSeparator === "," ? /\./g : /,/g;
+    return Number(
+      normalized
+        .replace(thousandSeparator, "")
+        .replace(decimalSeparator, "."),
+    );
   }
 }

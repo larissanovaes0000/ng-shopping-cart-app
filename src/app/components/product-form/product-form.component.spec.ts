@@ -86,6 +86,44 @@ describe("ProductFormComponent", () => {
     );
   });
 
+  it("parses 9.199,99 as 9199.99", () => {
+    productsService.createProduct.and.returnValue(of({ id: 1 } as any));
+
+    component.form.patchValue({
+      name: "Product",
+      description: "Description",
+      price: "9.199,99",
+      imgUrl: "https://img",
+    });
+
+    component.onSubmit();
+
+    expect(productsService.createProduct).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        price: 9199.99,
+      }),
+    );
+  });
+
+  it("parses integer thousand price without decimal part", () => {
+    productsService.createProduct.and.returnValue(of({ id: 1 } as any));
+
+    component.form.patchValue({
+      name: "Product",
+      description: "Description",
+      price: "R$ 1.000",
+      imgUrl: "https://img",
+    });
+
+    component.onSubmit();
+
+    expect(productsService.createProduct).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        price: 1000,
+      }),
+    );
+  });
+
   it("shows error when create fails", () => {
     productsService.createProduct.and.returnValue(throwError("err"));
 
