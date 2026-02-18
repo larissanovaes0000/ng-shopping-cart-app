@@ -33,8 +33,10 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit() {
     if(this.form.valid){
-      const rawPrice = this.form.value.price.replace("R$", "").replace(/\./g, "").replace(",", ".");
-      const payload = {...this.form.value, price: Number(rawPrice)};
+      const payload = {
+        ...this.form.value,
+        price: this.parseCurrencyToNumber(this.form.value.price),
+      };
       this.productsService.createProduct(payload).subscribe({
         next: () => {
           this.alertService.success("Product created successfully");
@@ -55,5 +57,14 @@ export class ProductFormComponent implements OnInit {
   hasError(controlName: string, error: string) {
     const control = this.form.get(controlName);
     return control?.touched && control?.hasError(error);
+  }
+
+  private parseCurrencyToNumber(value: string | number): number {
+    if (typeof value === "number") {
+      return value;
+    }
+
+    const digitsOnly = String(value).replace(/\D/g, "");
+    return Number(digitsOnly) / 100;
   }
 }

@@ -67,6 +67,25 @@ describe("ProductFormComponent", () => {
     expect(alertService.success).toHaveBeenCalled();
   });
 
+  it("keeps thousand and decimal separators when converting price", () => {
+    productsService.createProduct.and.returnValue(of({ id: 1 } as any));
+
+    component.form.patchValue({
+      name: "Product",
+      description: "Description",
+      price: "R$ 7.199,10",
+      imgUrl: "https://img",
+    });
+
+    component.onSubmit();
+
+    expect(productsService.createProduct).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        price: 7199.1,
+      }),
+    );
+  });
+
   it("shows error when create fails", () => {
     productsService.createProduct.and.returnValue(throwError("err"));
 
