@@ -55,8 +55,9 @@ button {
   border: none;
   cursor: pointer;
 
-  &:focus{
-    outline: none;
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
   &:disabled {
@@ -78,11 +79,15 @@ a {
 
   &:hover {
     text-decoration: none;
-      color: inherit;
+    color: inherit;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 }
 
-
-p{
-  margin: 0
+p {
+  margin: 0;
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 import { ProductsService } from "@services/products/products.service";
 import { ViewportService } from "@services/viewport/viewport.service";
+import { Product } from "app/shared/interfaces/product.interface";
 
 @Component({
   selector: "home-page",
@@ -23,5 +24,9 @@ export class HomePageComponent{
 
   toggleSortOptions() {
     this.showSortOptions = !this.showSortOptions;
+  }
+
+  trackByProductId(index: number, product: Product) {
+    return product.id ?? index;
   }
 }

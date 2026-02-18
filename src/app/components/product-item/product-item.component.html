@@ -1,32 +1,48 @@
 <div class="product-card">
-  <div
+  <img
     class="image-placeholder"
-    [style.backgroundImage]="'url(' + product.imgUrl + ')'"
-    [attr.aria-label]="product.name"
+    [src]="product.imgUrl"
+    [alt]="product.name"
     [attr.title]="product.name"
-    role="img"
     (error)="onImageError()"
-  >
-    <img [src]="product.imgUrl" (error)="onImageError()" hidden />
-  </div>
+  />
+
   <div class="content">
     <h3 class="name" title="{{ product.name }}">{{ product.name }}</h3>
     <p class="description" title="{{ product.description }}">
       {{ product.description }}
     </p>
     <span class="price">R$ {{ product.price | number: "1.2-2" }}</span>
+
     <button
+      type="button"
       *ngIf="quantity === 0"
       class="button-add-to-cart"
       (click)="addToCart()"
+      [attr.aria-label]="'Add ' + product.name + ' to cart'"
     >
       <span class="icon">+</span>
       Add to cart
     </button>
+
     <div *ngIf="quantity > 0" class="quantity-control">
-      <button class="button-control" (click)="decrease()">−</button>
-      <span class="quantity-number">{{ quantity }}</span>
-      <button class="button-control" (click)="increase()">+</button>
+      <button
+        type="button"
+        class="button-control"
+        (click)="decrease()"
+        [attr.aria-label]="'Decrease quantity of ' + product.name"
+      >
+        -
+      </button>
+      <span class="quantity-number" aria-live="polite">{{ quantity }}</span>
+      <button
+        type="button"
+        class="button-control"
+        (click)="increase()"
+        [attr.aria-label]="'Increase quantity of ' + product.name"
+      >
+        +
+      </button>
     </div>
   </div>
 </div>

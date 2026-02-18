@@ -1,5 +1,12 @@
 <div class="cart">
-  <div class="cart-info" (click)="handleCartInformation()" role="button">
+  <button
+    type="button"
+    class="cart-info"
+    (click)="handleCartInformation()"
+    [attr.aria-expanded]="openCartInformation"
+    aria-controls="cart-panel"
+    aria-label="Toggle cart details"
+  >
     <div class="cart-quantity">
       <img class="cart-icon" [src]="cartIcon" alt="cart icon" />
       <span class="items-number">
@@ -10,21 +17,21 @@
       {{ totalAmount$ | async | currency: "BRL" }}
     </span>
 
-    <div class="cart-items-list">
-      <button class="cart-down-arrow">
-        <img [src]="downIcon" alt="chevron down icon" />
-      </button>
-    </div>
-  </div>
+    <span class="cart-items-list" aria-hidden="true">
+      <img class="cart-down-arrow" [src]="downIcon" alt="" />
+    </span>
+  </button>
 
-  <div class="cart-card" *ngIf="openCartInformation">
+  <div id="cart-panel" class="cart-card" *ngIf="openCartInformation">
     <div class="cart-header">
       <h2>Cart Items</h2>
 
       <button
+        type="button"
         class="clear-all"
         (click)="clearCart()"
         [disabled]="emptyCart$ | async"
+        aria-label="Clear all cart items"
       >
         <i class="bi bi-trash3"></i>
         clear all
@@ -34,8 +41,13 @@
     <p *ngIf="emptyCart$ | async">Your cart is empty.</p>
 
     <ul class="cart-list">
-      <li class="cart-item" *ngFor="let item of cartItems$ | async">
-        <button class="remove-item" (click)="removeProduct(item.product.id)">
+      <li class="cart-item" *ngFor="let item of cartItems$ | async; trackBy: trackByCartItemId">
+        <button
+          type="button"
+          class="remove-item"
+          (click)="$event.stopPropagation(); removeProduct(item.product.id)"
+          [attr.aria-label]="'Remove ' + item.product.name + ' from cart'"
+        >
           <i class="bi bi-trash3"></i>
         </button>
         <span class="item-name">

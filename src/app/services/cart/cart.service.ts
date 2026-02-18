@@ -96,7 +96,6 @@ export class CartService {
     return data ? JSON.parse(data) : [];
   }
 
-  // clean storage on logout
   logout(): void {
     localStorage.removeItem("app_cart");
     this.cartSubject.next([]);

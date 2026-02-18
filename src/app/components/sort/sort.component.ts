@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
 import { ProductsService } from "@services/products/products.service";
-import { ViewportService } from "@services/viewport/viewport.service";
+import { ClickOutsideListener } from "app/shared/utils/click-outside-listener";
 
 export type SortOrder = "asc" | "desc";
 
@@ -9,14 +9,26 @@ export type SortOrder = "asc" | "desc";
   templateUrl: "./sort.component.html",
   styleUrls: ["./sort.component.scss"],
 })
-export class SortComponent {
-
+export class SortComponent extends ClickOutsideListener {
   showSortOptions = false;
 
-  constructor( private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    elementRef: ElementRef<HTMLElement>
+  ) {
+    super(elementRef);
+  }
 
   toggleSortOptions() {
     this.showSortOptions = !this.showSortOptions;
+  }
+
+  protected get isOpened(): boolean {
+    return this.showSortOptions;
+  }
+
+  protected closeOnOutsideClick(): void {
+    this.showSortOptions = false;
   }
 
   sortLowToHigh() {
@@ -28,5 +40,4 @@ export class SortComponent {
     this.productsService.setSortOrder("desc");
     this.showSortOptions = false;
   }
-
 }

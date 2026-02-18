@@ -1,6 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
 import { CartService } from "@services/cart/cart.service";
 import { ASSETS } from "app/shared/constants/assets.constants";
+import { CartItem } from "app/shared/interfaces/cart-item.interface";
+import { ClickOutsideListener } from "app/shared/utils/click-outside-listener";
 import { map } from "rxjs/internal/operators/map";
 
 @Component({
@@ -8,7 +10,7 @@ import { map } from "rxjs/internal/operators/map";
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.scss"],
 })
-export class CartComponent {
+export class CartComponent extends ClickOutsideListener {
   openCartInformation = false;
   cartItems$ = this.cartService.getCartItems();
   totalQuantity$ = this.cartService.getTotalQuantity();
@@ -16,9 +18,11 @@ export class CartComponent {
   emptyCart$ = this.cartItems$.pipe(map((items: any[]) => items.length === 0));
 
   cartIcon = ASSETS.CART_ICON;
-  downIcon = ASSETS.DOWN_ICON
+  downIcon = ASSETS.DOWN_ICON;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, elementRef: ElementRef<HTMLElement>) {
+    super(elementRef);
+  }
 
   clearCart() {
     this.cartService.clearCart();
@@ -28,8 +32,20 @@ export class CartComponent {
     this.openCartInformation = !this.openCartInformation;
   }
 
+  protected get isOpened(): boolean {
+    return this.openCartInformation;
+  }
+
+  protected closeOnOutsideClick(): void {
+    this.openCartInformation = false;
+  }
+
   removeProduct(productId: number) {
     this.cartService.removeProduct(productId);
+  }
+
+  trackByCartItemId(index: number, item: CartItem) {
+    return item.product.id ?? index;
   }
 }
 
