@@ -1,24 +1,32 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
-import { ProductsService } from '../../services/products.service';
-import { Product } from '../../core/interfaces/product.interface';
+import { ProductsService } from "@services/products/products.service";
+import { ViewportService } from "@services/viewport/viewport.service";
+import { Product } from "app/shared/interfaces/product.interface";
 
 @Component({
-    selector: 'home-page',
-    templateUrl: 'home.component.html',
-    styles: [],
-    changeDetection: ChangeDetectionStrategy.Default
+  selector: "home-page",
+  templateUrl: "home.component.html",
+  styleUrls: ["home.component.scss"],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
-export class HomePageComponent implements OnInit {
-    products$: Observable<Product[]>;
+export class HomePageComponent{
+  products$ = this.productsService.products$;
 
-    constructor(
-        public products: ProductsService,
-    ) {
-        this.products$ = this.products.fetchAll();
-    }
+  showSortOptions = false;
 
-    ngOnInit() {
-    }
+  isMobile$ = this.viewportService.isMobile$;
+
+  constructor(
+    private productsService: ProductsService,
+    private viewportService: ViewportService
+  ) {}
+
+  toggleSortOptions() {
+    this.showSortOptions = !this.showSortOptions;
+  }
+
+  trackByProductId(index: number, product: Product) {
+    return product.id ?? index;
+  }
 }

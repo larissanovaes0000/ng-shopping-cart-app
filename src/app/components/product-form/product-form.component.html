@@ -1,1 +1,97 @@
-<p>product-form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="product-form">
+  <h2 class="title">Add a new Product</h2>
+
+  <div class="field">
+    <label for="name">Name</label>
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      maxlength="30"
+      [attr.aria-invalid]="hasError('name', 'required') || hasError('name', 'maxlength')"
+      aria-describedby="name-error"
+      [class.invalid]="
+        hasError('name', 'required') || hasError('name', 'maxlength')
+      "
+    />
+    <small id="name-error" class="error" *ngIf="hasError('name', 'required')">
+      Name is required
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="description">Description</label>
+    <input
+      id="description"
+      type="text"
+      formControlName="description"
+      maxlength="100"
+      [attr.aria-invalid]="
+        hasError('description', 'required') || hasError('description', 'maxlength')
+      "
+      aria-describedby="description-error"
+      [class.invalid]="
+        hasError('description', 'required') ||
+        hasError('description', 'maxlength')
+      "
+    />
+    <small id="description-error" class="error" *ngIf="hasError('description', 'required')">
+      Description is required
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="price">Price</label>
+    <input
+      id="price"
+      type="text"
+      formControlName="price"
+      mask="separator.2"
+      thousandSeparator="."
+      decimalMarker=","
+      prefix="R$ "
+      inputmode="decimal"
+      [attr.aria-invalid]="hasError('price', 'required') || hasError('price', 'min')"
+      aria-describedby="price-required-error price-min-error"
+      [class.invalid]="
+        hasError('price', 'required') || hasError('price', 'min')
+      "
+    />
+    <small id="price-required-error" class="error" *ngIf="hasError('price', 'required')">
+      Price is required
+    </small>
+
+    <small id="price-min-error" class="error" *ngIf="hasError('price', 'min')">
+      Price must be greater than 0
+    </small>
+  </div>
+
+  <div class="field">
+    <label for="imgUrl">Img URL</label>
+    <input
+      id="imgUrl"
+      type="text"
+      formControlName="imgUrl"
+      [attr.aria-invalid]="hasError('imgUrl', 'required')"
+      aria-describedby="imgurl-error"
+      [class.invalid]="hasError('imgUrl', 'required')"
+    />
+    <small id="imgurl-error" class="error" *ngIf="hasError('imgUrl', 'required')">
+      Image URL is required
+    </small>
+  </div>
+
+  <div class="actions">
+    <button
+      type="button"
+      class="reset"
+      (click)="onReset()"
+      [disabled]="form.untouched"
+    >
+      Reset
+    </button>
+    <button type="submit" class="button-save" [disabled]="form.invalid">
+      Save
+    </button>
+  </div>
+</form>

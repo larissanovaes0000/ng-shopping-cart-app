@@ -1,15 +1,65 @@
-<div class="list-group">
-  <div class="list-group-item" *ngFor="let item of items$ | async">
-    <button class="close" (click)="cart.removeProduct(item.product, true)">
-      &times;
-    </button>
-    <p>{{ item.product.name }} x {{ item.amount }}</p>
-    <small
-      >{{ item.product.price }}€ x {{ item.amount }} =
-      {{ item.subtotal }}€</small
-    >
+<div class="cart">
+  <button
+    type="button"
+    class="cart-info"
+    (click)="handleCartInformation()"
+    [attr.aria-expanded]="openCartInformation"
+    aria-controls="cart-panel"
+    aria-label="Toggle cart details"
+  >
+    <div class="cart-quantity">
+      <img class="cart-icon" [src]="cartIcon" alt="cart icon" />
+      <span class="items-number">
+        {{ totalQuantity$ | async }}
+      </span>
+    </div>
+    <span class="cart-count">
+      {{ totalAmount$ | async | currency: "BRL" }}
+    </span>
+
+    <span class="cart-items-list" aria-hidden="true">
+      <img class="cart-down-arrow" [src]="downIcon" alt="" />
+    </span>
+  </button>
+
+  <div id="cart-panel" class="cart-card" *ngIf="openCartInformation">
+    <div class="cart-header">
+      <h2>Cart Items</h2>
+
+      <button
+        type="button"
+        class="clear-all"
+        (click)="clearCart()"
+        [disabled]="emptyCart$ | async"
+        aria-label="Clear all cart items"
+      >
+        <i class="bi bi-trash3"></i>
+        clear all
+      </button>
+    </div>
+
+    <p *ngIf="emptyCart$ | async">Your cart is empty.</p>
+
+    <ul class="cart-list">
+      <li class="cart-item" *ngFor="let item of cartItems$ | async; trackBy: trackByCartItemId">
+        <button
+          type="button"
+          class="remove-item"
+          (click)="$event.stopPropagation(); removeProduct(item.product.id)"
+          [attr.aria-label]="'Remove ' + item.product.name + ' from cart'"
+        >
+          <i class="bi bi-trash3"></i>
+        </button>
+        <span class="item-name">
+          {{ item.quantity }} x {{ item.product.name }}
+        </span>
+        <span class="item-price">
+          {{
+            item.product.price * item.quantity
+              | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+          }}
+        </span>
+      </li>
+    </ul>
   </div>
-</div>
-<div class="text-center p-4 mt-2">
-  <h4>Total : {{ total$ | async }}€</h4>
 </div>

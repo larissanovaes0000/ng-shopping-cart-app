@@ -1,0 +1,7 @@
+@use "styles/index" as *;
+
+body {
+  font-family:$font-family-base;
+  font-size:$text-md;
+  font-weight:$font-regular;
+}

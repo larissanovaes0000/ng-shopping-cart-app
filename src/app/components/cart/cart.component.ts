@@ -1,23 +1,51 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CartService } from '../../services/cart.service';
+import { Component, ElementRef } from "@angular/core";
+import { CartService } from "@services/cart/cart.service";
+import { ASSETS } from "app/shared/constants/assets.constants";
+import { CartItem } from "app/shared/interfaces/cart-item.interface";
+import { ClickOutsideListener } from "app/shared/utils/click-outside-listener";
+import { map } from "rxjs/internal/operators/map";
 
 @Component({
-    selector: 'cart',
-    templateUrl: 'cart.component.html',
-    styleUrls: ['cart.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.scss"],
 })
-export class CartComponent {
-    items$: Observable<any[]>;
-    total$: Observable<number>;
+export class CartComponent extends ClickOutsideListener {
+  openCartInformation = false;
+  cartItems$ = this.cartService.getCartItems();
+  totalQuantity$ = this.cartService.getTotalQuantity();
+  totalAmount$ = this.cartService.getTotalAmount();
+  emptyCart$ = this.cartItems$.pipe(map((items: any[]) => items.length === 0));
 
-    constructor(
-        public cart: CartService,
-    ) {
-        cart.getStoredCartItems();
+  cartIcon = ASSETS.CART_ICON;
+  downIcon = ASSETS.DOWN_ICON;
 
-        this.items$ = cart.getCartUpdates();
-        this.total$ = cart.getTotalUpdates();
-    }
+  constructor(private cartService: CartService, elementRef: ElementRef<HTMLElement>) {
+    super(elementRef);
+  }
+
+  clearCart() {
+    this.cartService.clearCart();
+  }
+
+  handleCartInformation() {
+    this.openCartInformation = !this.openCartInformation;
+  }
+
+  protected get isOpened(): boolean {
+    return this.openCartInformation;
+  }
+
+  protected closeOnOutsideClick(): void {
+    this.openCartInformation = false;
+  }
+
+  removeProduct(productId: number) {
+    this.cartService.removeProduct(productId);
+  }
+
+  trackByCartItemId(index: number, item: CartItem) {
+    return item.product.id ?? index;
+  }
 }
+
