@@ -77,6 +77,7 @@ https://www.figma.com/design/QGFswDNwqstQuFSk7DabB8/Vendas?node-id=391-141&t=Crv
 
 - Node.js 14.x (recommended)
 - npm 6.x
+- Package name: `ng-shopping-cart-app`
 
 > This project uses Angular 9.
 > If you are using Node.js 17+, see the OpenSSL workaround section below.
@@ -86,6 +87,8 @@ https://www.figma.com/design/QGFswDNwqstQuFSk7DabB8/Vendas?node-id=391-141&t=Crv
 ```bash
 npm install
 ```
+
+`postinstall` automatically applies a compatibility fix for the Angular 9 toolchain (`DEP0060` warning from `circular-dependency-plugin`).
 
 ### Run the Full Local Environment
 
@@ -146,6 +149,7 @@ Notes:
 - If your repository name is different, update `build:gh-pages` in `package.json`.
 - A `404.html` file is generated from `index.html` to support Angular routes on GitHub Pages.
 - In production (`environment.prod.ts`), the app runs without a backend API and uses `assets/products.json` + `localStorage`.
+- After publishing, enable GitHub Pages in repository settings using the `gh-pages` branch.
 
 ---
 
@@ -211,6 +215,8 @@ npm run start:api
 ### Data Source
 
 `db.json` (located at the project root)
+
+For GitHub Pages/production mode, seed data is loaded from `src/assets/products.json`.
 
 ---
 
