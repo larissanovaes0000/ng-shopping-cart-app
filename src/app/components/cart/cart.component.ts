@@ -1,6 +1,7 @@
 import { Component, ElementRef } from "@angular/core";
 import { CartService } from "@services/cart/cart.service";
 import { ASSETS } from "app/shared/constants/assets.constants";
+import { CartItem } from "app/shared/interfaces/cart-item.interface";
 import { ClickOutsideListener } from "app/shared/utils/click-outside-listener";
 import { map } from "rxjs/internal/operators/map";
 
@@ -41,6 +42,10 @@ export class CartComponent extends ClickOutsideListener {
 
   removeProduct(productId: number) {
     this.cartService.removeProduct(productId);
+  }
+
+  trackByCartItemId(index: number, item: CartItem) {
+    return item.product.id ?? index;
   }
 }
 

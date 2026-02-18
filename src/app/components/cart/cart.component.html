@@ -41,7 +41,7 @@
     <p *ngIf="emptyCart$ | async">Your cart is empty.</p>
 
     <ul class="cart-list">
-      <li class="cart-item" *ngFor="let item of cartItems$ | async">
+      <li class="cart-item" *ngFor="let item of cartItems$ | async; trackBy: trackByCartItemId">
         <button
           type="button"
           class="remove-item"
