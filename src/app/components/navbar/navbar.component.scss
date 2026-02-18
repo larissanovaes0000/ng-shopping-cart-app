@@ -14,25 +14,25 @@
     z-index: 9999;
   }
 
-  .navbar-list {
-    .navbar-item {
-      color: $white;
-      font-size: $text-md;
-      font-weight: $font-semibold;
-      text-decoration: none;
-      position: relative;
-      margin-left: 32px;
+  .navbar-item {
+    color: $white;
+    font-size: $text-md;
+    font-weight: $font-semibold;
+    text-decoration: none;
+    position: relative;
+    margin-left: 32px;
 
-      &:after {
-        content: "";
-        border-bottom: solid 4px $orange;
-        position: absolute;
-        bottom: -28px;
-        left: 0;
-        width: 100%;
-      }
+    &:after {
+      content: "";
+      border-bottom: solid 4px $orange;
+      position: absolute;
+      bottom: -28px;
+      left: 0;
+      width: 100%;
     }
+  }
 
+  .navbar-list {
     @media screen and (max-width: 767px) {
       display: none;
     }

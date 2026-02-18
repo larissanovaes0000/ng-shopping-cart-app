@@ -8,11 +8,9 @@ import { map, tap } from "rxjs/operators";
 @Injectable()
 export class ProductsService {
   private readonly API_URL = `${environment.apiUrl}/products`;
-
   private productsSubject = new BehaviorSubject<Product[]>([]);
   private sortOrderSubject = new BehaviorSubject<"asc" | "desc" | null>(null);
 
-  // order products by price based on sortOrderSubject
   products$ = combineLatest([
     this.productsSubject.asObservable(),
     this.sortOrderSubject.asObservable(),
@@ -32,7 +30,7 @@ export class ProductsService {
   loadProducts(): void {
     this.http.get<Product[]>(this.API_URL).subscribe({
       next: (products) => this.productsSubject.next(products),
-      error: (err) => console.error("Erro ao carregar produtos", err),
+      error: (err) => console.error("Error loading products", err),
     });
   }
 

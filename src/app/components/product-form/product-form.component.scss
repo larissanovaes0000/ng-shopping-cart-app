@@ -11,75 +11,75 @@
   @media screen and (max-width: 767px) {
     padding: 0;
   }
-}
 
-.title {
-  font-size: $text-lg;
-  font-weight: $font-bold;
-  color: $blue;
-}
+  .title {
+    font-size: $text-lg;
+    font-weight: $font-bold;
+    color: $blue;
+  }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 
-  label {
-    font-size: $text-md;
+    label {
+      font-size: $text-md;
+      color: $gray-900;
+      font-weight: $font-regular;
+      margin-bottom: 0;
+    }
+
+    input {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid $gray-100;
+      font-size: $text-md;
+
+      &:focus {
+        outline: none;
+        border-color: $blue;
+      }
+
+      &.invalid {
+        border-color: $danger;
+      }
+    }
+
+    .error {
+      color: $danger;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .reset {
+    background: none;
+    border: none;
     color: $gray-900;
-    font-weight: $font-regular;
-    margin-bottom: 0;
-  }
-
-  input {
-    padding: 10px 12px;
-    border-radius: 6px;
-    border: 1px solid $gray-100;
     font-size: $text-md;
+    cursor: pointer;
 
-    &:focus {
-      outline: none;
-      border-color: $blue;
-    }
-
-    &.invalid {
-      border-color: $danger;
+    &:hover {
+      text-decoration: underline;
     }
   }
 
-  .error {
-    color: $danger;
-    font-size: 12px;
-    margin-top: 4px;
+  .button-save {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: $text-md;
+    cursor: pointer;
+    border: 1px solid $gray-200;
   }
-}
-
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 8px;
-}
-
-.reset {
-  background: none;
-  border: none;
-  color: $gray-900;
-  font-size: $text-md;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.button-save {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: $text-md;
-  cursor: pointer;
-  border: 1px solid $gray-200;
 }

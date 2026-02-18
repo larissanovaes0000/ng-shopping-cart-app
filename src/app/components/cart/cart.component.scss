@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
 
-  .cart-info{
+  .cart-info {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -41,10 +41,8 @@
     margin: 0 10px;
   }
 
-  .cart-items-list {
-    .cart-down-arrow {
-      width: 16px;
-    }
+  .cart-down-arrow {
+    width: 16px;
   }
 
   .cart-card {
