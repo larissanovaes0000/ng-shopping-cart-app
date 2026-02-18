@@ -20,7 +20,7 @@ module.exports = function (config) {
       outputFile: 'test-results.xml'
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/devskiller-angular-shopping-cart'),
+      dir: require('path').join(__dirname, './coverage/ng-shopping-cart-app'),
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },

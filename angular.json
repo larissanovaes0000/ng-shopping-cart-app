@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "devskiller-angular-shopping-cart": {
+    "ng-shopping-cart-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "outputPath": "dist/devskiller-angular-shopping-cart",
+            "outputPath": "dist/ng-shopping-cart-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "devskiller-angular-shopping-cart:build"
+            "browserTarget": "ng-shopping-cart-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "devskiller-angular-shopping-cart:build:production"
+              "browserTarget": "ng-shopping-cart-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "devskiller-angular-shopping-cart:build"
+            "browserTarget": "ng-shopping-cart-app:build"
           }
         },
         "test": {
@@ -129,5 +129,5 @@
       }
     }
   },
-  "defaultProject": "devskiller-angular-shopping-cart"
+  "defaultProject": "ng-shopping-cart-app"
 }
